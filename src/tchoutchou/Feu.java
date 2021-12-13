@@ -1,6 +1,8 @@
 package tchoutchou;
 
 import java.awt.Point;
+import java.awt.Graphics2D;
+
 /**
  * Class <code>Feu</code>La classe feu permet de manipuler le feu du jeu
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
@@ -41,7 +43,7 @@ public class Feu extends ObjetGraphiqueFixe{
 	 * Méthode afficher permettant d'afficher le feu sur le jeu
 	 */
 	@Override
-	public void afficher()
+	public void afficher(Graphics2D g)
 	{
 		
 	}

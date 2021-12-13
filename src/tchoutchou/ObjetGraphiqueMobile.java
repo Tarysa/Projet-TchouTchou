@@ -1,5 +1,5 @@
 package tchoutchou;
-import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  * Class <code>ObjetGraphiqueMobile</code>La classe abstraite ObjetGraphiqueMobile permet de manipuler des ObjetGraphiques qui seront mobiles
@@ -17,7 +17,7 @@ public abstract class ObjetGraphiqueMobile extends ObjetGraphique{
 	 * Constructeur de la classe ObjetGraphiqueMobile
 	 * @param p : Point qui correspond à l'endroit où se trouvera cette objet graphique mobile
 	 */
-	public ObjetGraphiqueMobile(Point p) {
+	public ObjetGraphiqueMobile(Point2D p) {
 		
 		super(p);
 		m_type = 1;
@@ -28,7 +28,7 @@ public abstract class ObjetGraphiqueMobile extends ObjetGraphique{
 	 * @param p : Point qui correspond à l'endroit où se trouvera cette objet graphique mobile
 	 * @param type : entier correspondant au type de l'ObjetGraphiqueMobile, 1 par défaut
 	 */
-	public ObjetGraphiqueMobile(Point p, int type) {
+	public ObjetGraphiqueMobile(Point2D p, int type) {
 		
 		super(p);
 		m_type = type;

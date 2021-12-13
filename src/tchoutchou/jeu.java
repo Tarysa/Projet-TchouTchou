@@ -16,6 +16,8 @@ import javax.swing.border.EmptyBorder;
 public class jeu extends JDialog {
 
 	private MonPanelJeu contentPanel ;
+	
+	private TchouTchou monPlateau ;
 
 	/**
 	 * Launch the application.

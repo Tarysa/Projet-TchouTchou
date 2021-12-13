@@ -1,5 +1,9 @@
 package tchoutchou;
-import java.awt.Point;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+import java.awt.Color;
+import java.awt.BasicStroke;
+
 
 /**
  * Class <code>Case</code>La classe abstraite Case permet de manipuler des cases
@@ -22,7 +26,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * Constructeur de la classe case
      * @param p : Point qui correspond à l'endroit où se trouvera cette case
      */
-    public Case(Point p) {
+    public Case(Point2D p) {
     	super(p);
     }
     
@@ -31,20 +35,96 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * @param p : Point qui correspond à l'endroit où se trouvera cette case
      * @param type : entier correspondant au type de la case (1-7 sera des rails)
      */
-    public Case(Point p, int type) {
+    public Case(Point2D p, int type) {
     	super(p,type);
     }
     
     /**
 	 * Méthode afficher permettant d'afficher le feu sur le jeu
+     * @param g 
 	 */
-    public void afficher() {
+    @Override
+    public void afficher(Graphics2D g) {
+    	
+    	Color defaut = new Color(59, 130, 8) ;
+    	BasicStroke strokeDefaut = new BasicStroke(1) ;
+    	
+    	if (case_bloquee) {
+    		defaut = new Color(222,220,20) ;
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(6)) ;
+    	}
+    	
+    	else {
+    		if (case_selectionnee){
+    			g.setColor(new Color(225,106,12)) ;
+        		g.setStroke(new BasicStroke(10)) ;
+    		}
+    		else {
+    			g.setColor(new Color(255,255,255)) ;
+        		g.setStroke(new BasicStroke(6)) ;
+    		}
+    	}
+    	
+    	g.drawRect((int)m_p.getX(), (int)m_p.getY(), 200, 200) ;
+    	g.setColor(defaut) ;
+    	g.fillRect((int)m_p.getX(), (int)m_p.getY(), 200, 200) ;
+    	
+    	if (this instanceof RailCourbeGH) {
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(50)) ;
+    		
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.setColor(new Color(0, 153, 0)) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    		
+    	}
+    	else if (this instanceof RailCourbeGB) {
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(50)) ;
+    		
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.setColor(new Color(0, 153, 0)) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    	}
+    	else if (this instanceof RailCourbeBD) {
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(50)) ;
+    		
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.setColor(new Color(0, 153, 0)) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    	}
+    	else if (this instanceof RailCourbeHD) {
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(50)) ;
+    		
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.setColor(new Color(0, 153, 0)) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    	}
+    	else if (this instanceof TraverseeHorizontale) {
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(50)) ;
+    		
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.setColor(new Color(0, 153, 0)) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    	}
+    	else if (this instanceof TraverseeVerticale) {
+    		g.setColor(new Color(255,255,255)) ;
+    		g.setStroke(new BasicStroke(50)) ;
+    		
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.setColor(new Color(0, 153, 0)) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    	}
     	
     }
     
     /**
      * Mutateur de case_selectionnee
-     * @param select : booléan qui permet de définir si la case est selectionnée ou non, true si elle est selectionnée, false si elle ne l'est pas
+     * @param select : booléen qui permet de définir si la case est selectionnée ou non, true si elle est selectionnée, false si elle ne l'est pas
      */
     public void setCase_Selectionnee(boolean select) {
     	case_selectionnee = select;
@@ -78,10 +158,14 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * Redéfinition dans toutes les rails
      */
     
-    abstract Point trajectoire(Point p, boolean sens);
+    public Point2D getPoint() {
+    	return m_p;
+    }
+    
+    abstract Point2D trajectoire(Point2D p, boolean sens);
     
     abstract int sens(ObjetGraphiqueMobile t);
     
-    abstract Point centre_rotation();
+    abstract Point2D centre_rotation();
     
 }

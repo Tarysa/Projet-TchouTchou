@@ -1,5 +1,7 @@
 package tchoutchou;
-import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.Graphics2D;
+
 
 /**
  * Class <code>ObjetGraphique</code> La classe abstraite ObjetGraphique permet de manipuler des ObjetGraphiques
@@ -12,13 +14,13 @@ public abstract class ObjetGraphique {
 	/**
 	 * m_p : Point qui correspond à l'endroit où se trouvera cette objet graphique
 	 */
-	protected Point m_p = new Point();
+	protected Point2D m_p;
 	
 	/**
 	 * Constructeur de la classe ObjetGraphique
      * @param p : Point qui correspond à l'endroit où se trouvera cet objet graphique
 	*/
-	public ObjetGraphique(Point p) {
+	public ObjetGraphique(Point2D p) {
 		
 		m_p = p;
 	}
@@ -27,7 +29,7 @@ public abstract class ObjetGraphique {
 	 * Accesseur de m_p
 	 * @return renvoie le Point de l'objet graphique
 	 */
-	public Point getPoint(){
+	public Point2D getPoint(){
 		
 		return m_p;
 	}
@@ -36,7 +38,7 @@ public abstract class ObjetGraphique {
 	 *  Mutateur de m_p
 	 *  @param p : nouveau point où se trouvera l'objet graphique
 	 */
-    public void setPoint(Point p) {
+    public void setPoint(Point2D p) {
     	
     	this.m_p = p;
     }
@@ -44,5 +46,5 @@ public abstract class ObjetGraphique {
     /**
 	 * Méthode abstraite Afficher
 	 */
-	public abstract void afficher();
+	public abstract void afficher(Graphics2D g);
 }
