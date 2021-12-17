@@ -15,9 +15,9 @@ import javax.swing.border.EmptyBorder;
 
 public class jeu extends JDialog {
 
-	private MonPanelJeu contentPanel ;
-	
-	private TchouTchou monPlateau ;
+	private MonPanelJeu contentPanel;
+
+	private TchouTchou monPlateau;
 
 	/**
 	 * Launch the application.
@@ -37,10 +37,10 @@ public class jeu extends JDialog {
 	 */
 	public jeu() {
 		setTitle("Partie de TchouTchou");
-		
+
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds((screenSize.width-900)/2, (screenSize.height-800)/2, 900, 800);
-		
+		setBounds((screenSize.width - 900) / 2, (screenSize.height - 800) / 2, 900, 800);
+
 		contentPanel = new MonPanelJeu(this);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,25 +48,24 @@ public class jeu extends JDialog {
 		this.setContentPane(contentPanel);
 		contentPanel.setLayout(null);
 	}
-	
+
 	public void dessiner(Graphics g) {
-		afficherFond((Graphics2D)g);
-		
+		afficherFond((Graphics2D) g);
+
 	}
-	
+
 	public void afficherFond(Graphics2D g) {
-		
-		g.setColor(new Color(0,0,0));
+
+		g.setColor(new Color(0, 0, 0));
 		g.setStroke(new BasicStroke(10));
 		g.drawRect(150, 150, 200, 200);
-		g.setColor(new Color(0,153,0));
+		g.setColor(new Color(0, 153, 0));
 		g.fillRect(150, 150, 200, 200);
-		g.setColor(new Color(204,0,0));
+		g.setColor(new Color(204, 0, 0));
 		g.setStroke(new BasicStroke(50));
-        g.fillArc(150-120, 150-120, 240, 240, -90, 90);
-        g.setColor(new Color(0,153,0));
-        g.fillArc(150-80, 150-80, 160, 160, -90, 90);
+		g.fillArc(150 - 120, 150 - 120, 240, 240, -90, 90);
+		g.setColor(new Color(0, 153, 0));
+		g.fillArc(150 - 80, 150 - 80, 160, 160, -90, 90);
 	}
-	
 
 }
