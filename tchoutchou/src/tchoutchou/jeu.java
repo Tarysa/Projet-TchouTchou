@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Point;
+
 
 public class jeu extends JDialog {
 
@@ -35,7 +37,7 @@ public class jeu extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jeu() {
+	public void jeu() {
 		setTitle("Partie de TchouTchou");
 
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -47,6 +49,12 @@ public class jeu extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		this.setContentPane(contentPanel);
 		contentPanel.setLayout(null);
+		
+		TchouTchou partie = new TchouTchou(mainwindow.niveau);
+		
+		timer = new QTimer(this) ;
+	    connect(timer, SIGNAL(timeout()), this, SLOT(update())) ;
+		
 	}
 
 	public void dessiner(Graphics g) {
@@ -68,4 +76,33 @@ public class jeu extends JDialog {
 		g.fillArc(150 - 80, 150 - 80, 160, 160, -90, 90);
 	}
 
+	public void cliquerFeu()
+	{
+	   // Pré-réglage
+		monPlateau.getTrain().setEnDeplacement(true);
+		Point p_case = new Point(0,0);
+		monPlateau.getTrain().setSens(monPlateau.getPlateau().getCase(p_case).sens(monPlateau.getTrain())) ;
+		monPlateau.getFeu().MiseAuVert();
+	   // Lancement du timer
+	   timer->start(10) ;
+	}
+	
+	void initJeu(boolean win)
+	{
+	    if (win)
+	    {
+	        if (mainwindow.NbPartie <= 4)
+	            mainwindow.NbPartie ++;
+	        monPlateau.setFaute(0);
+	        //jeu.getPlateau().melangePlateau();
+	    }
+	    else
+	    	monPlateau.incrFaute();
+
+
+	    monPlateau.getTrain().reinitTrain();
+	    monPlateau.getTrain().setPoint(Point(monPlateau.getPlateau().getCase(new Point(0,0)).getPoint().getX(),monPlateau.getPlateau().getCase(new Point(0,0)).getPoint().getY()+100));
+	    monPlateau.getFeu().MiseAuRouge();
+
+	}
 }

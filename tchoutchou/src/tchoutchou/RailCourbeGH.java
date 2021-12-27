@@ -15,7 +15,7 @@ public class RailCourbeGH extends Case{
 	 * @param p : Point qui correspond à l'endroit où se trouvera cet rail
 	 */
 	public RailCourbeGH(Point p) {
-		super(p);
+		super(p, 1);
 	}
 	
 	/**

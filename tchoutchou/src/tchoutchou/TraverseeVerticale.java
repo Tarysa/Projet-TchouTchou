@@ -17,7 +17,7 @@ public class TraverseeVerticale extends Case {
 	 * @param p : Point qui correspond à l'endroit où se trouvera cet rail
 	 */
 	public TraverseeVerticale(Point p) {
-		super(p);
+		super(p, 6);
 	}
 	
 	/**

@@ -1,5 +1,5 @@
 package tchoutchou;
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 /**
  * Class <code>Case</code>La classe RailCoubrGB permet de manipuler des Rails courbés du bas vers la gauche
@@ -14,8 +14,8 @@ public class RailCourbeGB extends Case{
 	 * Constructeur de la classe RailCourbeGB
 	 * @param p : Point qui correspond à l'endroit où se trouvera cet rail
 	 */
-	public RailCourbeGB(Point2D p) {
-		super(p);
+	public RailCourbeGB(Point p) {
+		super(p, 2);
 	}
 	
 	/**
@@ -23,9 +23,9 @@ public class RailCourbeGB extends Case{
      * @return renvoie le point du centre de rotation du rail (ici bas gauche du rail)
 	 */
 	@Override
-	public Point2D centre_rotation(){
+	public Point centre_rotation(){
 		
-	    return new Point2D((int)m_p.getX(), (int)m_p.getY() + 200);
+	    return new Point((int)m_p.getX(), (int)m_p.getY() + 200);
 	}
 	
 	/**
@@ -57,9 +57,9 @@ public class RailCourbeGB extends Case{
      * @return renvoie le point de l'itération suivante
 	 */
 	@Override
-	public Point2D trajectoire(Point2D p, boolean sens) {
+	public Point trajectoire(Point p, boolean sens) {
 		
-		   Point2D pt = new Point2D;
+		   Point pt = new Point();
 
 		    int x0 = (int)this.centre_rotation().getX() ;
 		    int y0 = (int)this.centre_rotation().getY() ;

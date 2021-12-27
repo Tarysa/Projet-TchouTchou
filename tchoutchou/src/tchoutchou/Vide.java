@@ -17,7 +17,7 @@ public class Vide extends Case {
 	 * @param p : Point qui correspond à l'endroit où se trouvera cet rail
 	 */
 	public Vide(Point p) {
-		super(p);
+		super(p, 7);
 	}
 	
 	/**

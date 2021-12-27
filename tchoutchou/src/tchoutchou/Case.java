@@ -1,6 +1,7 @@
 package tchoutchou;
+
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.awt.Color;
 import java.awt.BasicStroke;
 
@@ -26,7 +27,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * Constructeur de la classe case
      * @param p : Point qui correspond à l'endroit où se trouvera cette case
      */
-    public Case(Point2D p) {
+    public Case(Point p) {
     	super(p);
     }
     
@@ -35,7 +36,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * @param p : Point qui correspond à l'endroit où se trouvera cette case
      * @param type : entier correspondant au type de la case (1-7 sera des rails)
      */
-    public Case(Point2D p, int type) {
+    public Case(Point p, int type) {
     	super(p,type);
     }
     
@@ -158,14 +159,14 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * Redéfinition dans toutes les rails
      */
     
-    public Point2D getPoint() {
+    public Point getPoint() {
     	return m_p;
     }
     
-    abstract Point2D trajectoire(Point2D p, boolean sens);
+    abstract Point trajectoire(Point p, boolean sens);
     
     abstract int sens(ObjetGraphiqueMobile t);
     
-    abstract Point2D centre_rotation();
+    abstract Point centre_rotation();
     
 }

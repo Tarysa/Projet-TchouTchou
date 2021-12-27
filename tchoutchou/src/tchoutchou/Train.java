@@ -1,6 +1,6 @@
 package tchoutchou;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.awt.Graphics2D;
 
 
@@ -19,7 +19,7 @@ public class Train extends ObjetGraphiqueMobile{
 	 * Constructeur de la classe Train
 	 * @param p : Point qui correspond à l'endroit où se trouvera cet objet graphique
 	 */
-	public Train(Point2D p) {
+	public Train(Point p) {
 		super(p);
 		m_EnDeplacement = false;
 		m_sens = 1;

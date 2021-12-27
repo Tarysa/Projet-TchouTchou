@@ -20,6 +20,8 @@ public class mainwindow extends JFrame {
 	private ImageIcon monImageFond = new ImageIcon("ImageTchouTchou/Gare.jpg");
 	private MonPanel contentPane;
 	static int niveau = 2;
+	static int NbPartie = 1;
+	static boolean aide = false ;
 
 	/**
 	 * Launch the application.

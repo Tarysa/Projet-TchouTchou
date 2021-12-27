@@ -1,6 +1,6 @@
 package tchoutchou;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.awt.Graphics2D;
 
 /**
@@ -47,11 +47,11 @@ public class Plateau{
 		return m_taille;
 	}
 	
-	public void setCase(Point2D p, Case c) {
+	public void setCase(Point p, Case c) {
 		m_plateau[(int)p.getX()][(int)p.getY()] = c;
 	}
 	
-	public Case getCase(Point2D p) {
+	public Case getCase(Point p) {
 		return m_plateau[(int)p.getX()][(int)p.getY()];
 	}
 	
@@ -59,22 +59,22 @@ public class Plateau{
 		
 		for (int i = 0; i < m_taille; i ++) {
 			for (int j = 0; j < m_taille; j ++) {
-				getCase(new Point2D(i,j)).afficher(g);
+				getCase(new Point(i,j)).afficher(g);
 			}
 		}
 		
 		for (int i = 0; i < m_taille; i ++) {
 			for (int j = 0; j < m_taille; j ++) {
-				if ( (getCase(new Point2D(i,j)).getCase_Selectionnee()) || (getCase(new Point2D(i,j)).getCase_bloquee())) {
-					getCase(new Point2D(i,j)).afficher(g);
+				if ( (getCase(new Point(i,j)).getCase_Selectionnee()) || (getCase(new Point(i,j)).getCase_bloquee())) {
+					getCase(new Point(i,j)).afficher(g);
 				}
 			}
 		}
 	}
 	
-	public Point2D rechercheCase(Point2D p) {
+	public Point rechercheCase(Point p) {
 		
-		Point2D nouv = new Point2D(-1, -1);
+		Point nouv = new Point(-1, -1);
 		for (int i = 0; i < m_taille; i ++) {
 			for (int j = 0; j < m_taille; j ++) {
 				if (( m_plateau[i][j].getPoint().getX() == p.getX() ) && (m_plateau[i][j].getPoint().getY() == p.getY() )) {
@@ -89,8 +89,8 @@ public class Plateau{
 	
 	public boolean echangerCase(Case c1, Case c2) {
 
-	    Point2D v1 = rechercheCase(c1.getPoint()) ;
-	    Point2D v2 = rechercheCase(c2.getPoint()) ;
+	    Point v1 = rechercheCase(c1.getPoint()) ;
+	    Point v2 = rechercheCase(c2.getPoint()) ;
 
 	    if (!(c1 instanceof Vide) && !(c2 instanceof Vide)) {
 	        // Cas où les deux cases ne sont pas vides
@@ -98,7 +98,7 @@ public class Plateau{
 	    else {
 	        if ( (!c1.getCase_bloquee()) && (!c2.getCase_bloquee()))
 	        {
-	            Point2D pt = c2.getPoint() ;
+	            Point pt = c2.getPoint() ;
 	            c2.setPoint(c1.getPoint()) ;
 	            setCase(v2, c1) ;
 	            c1.setPoint(pt) ;
@@ -111,9 +111,9 @@ public class Plateau{
 
 	}
 	
-	public Case InitCase(Case c, Point2D coord_plateau)
+	public Case InitCase(Case c, Point coord_plateau)
 	{
-	    Point2D n_p ;
+	    Point n_p = new Point();
 
 	    if (m_taille == 2)
 	    {
@@ -127,6 +127,30 @@ public class Plateau{
 	    c.setPoint(n_p);
 
 	    return c;
+	}
+
+	public Point rechercheCaseType(int type) {
+
+	    Point nouv = new Point(-1,-1) ;
+	    boolean trouve = false;
+	    int i=0;
+	    
+	    while((i<m_taille)&&(!trouve))
+	    {
+	        int j = 0;
+	        while((j<m_taille)&&(!trouve))
+	        {
+	            if (( m_plateau[i][j].getType() == type )&&(!m_plateau[i][j].getCase_bloquee())) {
+	                nouv.setLocation(i,j) ;
+	                trouve = true;
+	            }
+	            j ++;
+	        }
+	       i++;
+	    }
+
+	    return nouv ;
+
 	}
 
 	/* operator==(const Plateau& p1,const Plateau& p2)
