@@ -1,6 +1,9 @@
 package tchoutchou;
 
 import java.awt.Point;
+
+import javax.swing.ImageIcon;
+
 import java.awt.Graphics2D;
 
 /**
@@ -45,7 +48,10 @@ public class Feu extends ObjetGraphiqueFixe{
 	@Override
 	public void afficher(Graphics2D g)
 	{
-		
+		if (m_etat)
+			g.drawImage(new ImageIcon("ImageTchouTchou/FeuVert.png").getImage(), (int)m_p.getX(), (int)m_p.getY(), 41, 100, null);
+		else
+			g.drawImage(new ImageIcon("ImageTchouTchou/FeuRouge.png").getImage(), (int)m_p.getX(), (int)m_p.getY(), 41, 100, null);
 	}
 	
 }

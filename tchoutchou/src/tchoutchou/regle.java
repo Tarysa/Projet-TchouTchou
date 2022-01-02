@@ -36,7 +36,7 @@ public class regle extends JDialog {
 	 */
 	public regle() {
 
-		setTitle("RÃ¨gles");
+		setTitle("Règles");
 
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((screenSize.width - 794) / 2, (screenSize.height - 550) / 2, 794, 550);

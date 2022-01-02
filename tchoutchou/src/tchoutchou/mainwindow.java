@@ -14,6 +14,8 @@ import java.awt.Graphics;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class mainwindow extends JFrame {
 
@@ -21,7 +23,7 @@ public class mainwindow extends JFrame {
 	private MonPanel contentPane;
 	static int niveau = 2;
 	static int NbPartie = 1;
-	static boolean aide = false ;
+	static boolean aide = false;
 
 	/**
 	 * Launch the application.
@@ -54,6 +56,12 @@ public class mainwindow extends JFrame {
 
 		// Ici on place le bouton central Play
 		JButton btnPlay = new JButton("Play");
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jeu Jeu = new jeu();
+				Jeu.setVisible(true);
+			}
+		});
 		btnPlay.setFont(new Font("MV Boli", Font.BOLD, 26));
 		btnPlay.setBounds(260, 220, 291, 81);
 

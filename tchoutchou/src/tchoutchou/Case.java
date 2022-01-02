@@ -47,12 +47,12 @@ public abstract class Case extends ObjetGraphiqueMobile{
     @Override
     public void afficher(Graphics2D g) {
     	
-    	Color defaut = new Color(59, 130, 8) ;
+    	Color defaut = new Color(0, 153, 0) ;
     	BasicStroke strokeDefaut = new BasicStroke(1) ;
     	
     	if (case_bloquee) {
     		defaut = new Color(222,220,20) ;
-    		g.setColor(new Color(255,255,255)) ;
+    		g.setColor(new Color(0,0,0)) ;
     		g.setStroke(new BasicStroke(6)) ;
     	}
     	
@@ -62,7 +62,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
         		g.setStroke(new BasicStroke(10)) ;
     		}
     		else {
-    			g.setColor(new Color(255,255,255)) ;
+    			g.setColor(new Color(0,0,0)) ;
         		g.setStroke(new BasicStroke(6)) ;
     		}
     	}
@@ -72,7 +72,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
     	g.fillRect((int)m_p.getX(), (int)m_p.getY(), 200, 200) ;
     	
     	if (this instanceof RailCourbeGH) {
-    		g.setColor(new Color(255,255,255)) ;
+    		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(50)) ;
     		
     		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
@@ -81,44 +81,42 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		
     	}
     	else if (this instanceof RailCourbeGB) {
-    		g.setColor(new Color(255,255,255)) ;
+    		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(50)) ;
     		
-    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() + 80, 240, 240, 90, -90) ;
     		g.setColor(new Color(0, 153, 0)) ;
-    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() + 120, 160, 160, 90, -90) ;
     	}
     	else if (this instanceof RailCourbeBD) {
-    		g.setColor(new Color(255,255,255)) ;
+    		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(50)) ;
     		
-    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.fillArc((int)m_p.getX() + 80, (int)m_p.getY() + 80, 240, 240, 90, 90) ;
     		g.setColor(new Color(0, 153, 0)) ;
-    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    		g.fillArc((int)m_p.getX() + 120, (int)m_p.getY() + 120, 160, 160, 90, 90) ;
     	}
     	else if (this instanceof RailCourbeHD) {
-    		g.setColor(new Color(255,255,255)) ;
+    		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(50)) ;
     		
-    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		g.fillArc((int)m_p.getX() + 80, (int)m_p.getY() - 120, 240, 240, -90, -90) ;
     		g.setColor(new Color(0, 153, 0)) ;
-    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    		g.fillArc((int)m_p.getX() + 120, (int)m_p.getY() - 80, 160, 160, -90, -90) ;
     	}
     	else if (this instanceof TraverseeHorizontale) {
-    		g.setColor(new Color(255,255,255)) ;
-    		g.setStroke(new BasicStroke(50)) ;
+    		g.setColor(new Color(139,0,0)) ;
+    		g.setStroke(new BasicStroke(1)) ;
     		
-    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
-    		g.setColor(new Color(0, 153, 0)) ;
-    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    		g.drawRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
+            g.fillRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
     	}
     	else if (this instanceof TraverseeVerticale) {
     		g.setColor(new Color(255,255,255)) ;
-    		g.setStroke(new BasicStroke(50)) ;
+    		g.setStroke(new BasicStroke(1)) ;
     		
-    		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
-    		g.setColor(new Color(0, 153, 0)) ;
-    		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
+    		g.drawRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;
+            g.fillRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;
     	}
     	
     }

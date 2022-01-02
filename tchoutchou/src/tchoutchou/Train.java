@@ -1,6 +1,9 @@
 package tchoutchou;
 
 import java.awt.Point;
+
+import javax.swing.ImageIcon;
+
 import java.awt.Graphics2D;
 
 
@@ -53,7 +56,7 @@ public class Train extends ObjetGraphiqueMobile{
 	@Override
 	public void afficher(Graphics2D g)
 	{
-		
+		g.drawImage(new ImageIcon("ImageTchouTchou/TrainBleuRougeST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
 	}
 	
 	/**
