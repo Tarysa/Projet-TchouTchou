@@ -28,7 +28,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * @param p : Point qui correspond à l'endroit où se trouvera cette case
      */
     public Case(Point p) {
-    	super(p);
+    	super(new Point(p));
     }
     
     /**
@@ -37,7 +37,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
      * @param type : entier correspondant au type de la case (1-7 sera des rails)
      */
     public Case(Point p, int type) {
-    	super(p,type);
+    	super(new Point(p),type);
     }
     
     /**
@@ -112,7 +112,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
             g.fillRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
     	}
     	else if (this instanceof TraverseeVerticale) {
-    		g.setColor(new Color(255,255,255)) ;
+    		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(1)) ;
     		
     		g.drawRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;

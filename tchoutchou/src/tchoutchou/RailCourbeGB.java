@@ -79,7 +79,7 @@ public class RailCourbeGB extends Case{
 		        pt.setLocation(p.getX() - 1, (int)pt.getY()) ;
 		        if (100*100 - (pt.getX() - x0)*(pt.getX() - x0) < 0) // Cas de la racine <0
 		        {
-		        	pt.setLocation(p.getX() - 3, p.getY() - 3);
+		        	pt.setLocation(p.getX() + 3, p.getY() + 3);
 		        }
 		        else
 		        	pt.setLocation((int)pt.getX(), y0 - (int)Math.floor(Math.sqrt(100*100 - (pt.getX() - x0)*(pt.getX() - x0))) );

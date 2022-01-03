@@ -59,6 +59,7 @@ public class TchouTchou {
 	    initPlateau();
 	    m_feu = new Feu(new Point((int)m_plateau.getCase(new Point(0,m_taille-1)).getPoint().getX() + 250, (int)m_plateau.getCase(new Point(0,m_taille-1)).getPoint().getY() + 50)) ;
 	    m_train = new Train(new Point((int)m_plateau.getCase(new Point(0,0)).getPoint().getX(),(int)m_plateau.getCase(new Point(0,0)).getPoint().getY() + 100));
+
 	}
 
 	/* public TchouTchou::~TchouTchou()
@@ -166,13 +167,14 @@ public class TchouTchou {
 	            }
 	       }
 	    }
-	    m_plateau =  m_plateauSoluce;
 
-	    /*while ( m_plateau ==  m_plateauSoluce)
+	    m_plateau =  new Plateau(m_plateauSoluce);
+	    		
+	    while (m_plateau.equals(m_plateauSoluce))
 	    {
 	        //On remélange car la solution est déjà donnée
-	        //getPlateau().melangePlateau();
-	    }*/
+	        getPlateau().melangePlateau();
+	    }
 
 	    m_nbAide = 0;
 	    m_fautes = 0;

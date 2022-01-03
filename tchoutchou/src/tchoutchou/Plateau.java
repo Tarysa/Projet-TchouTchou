@@ -1,6 +1,7 @@
 package tchoutchou;
 
 import java.awt.Point;
+import java.util.Random;
 import java.awt.Graphics2D;
 
 /**
@@ -78,7 +79,7 @@ public class Plateau{
 		for (int i = 0; i < m_taille; i ++) {
 			for (int j = 0; j < m_taille; j ++) {
 				if (( m_plateau[i][j].getPoint().getX() == p.getX() ) && (m_plateau[i][j].getPoint().getY() == p.getY() )) {
-					p.setLocation((int)nouv.getX(), (int)nouv.getY()) ;
+					nouv.setLocation(i,j) ;
 				}
 			}
 		}
@@ -168,29 +169,43 @@ public class Plateau{
 	    return egaux;
 	}
 
-	Plateau& Plateau::operator=(const Plateau& p){
+	public Plateau operatorEqual(Plateau p){
 
-	    if (this != &p)
+	    if (this != p)
 	     {
-	        this->~Plateau();
 	        m_taille = p.getTaille() ;
-	        m_plateau = new Case**[m_taille] ;
-	        for (int i = 0 ; i < m_taille ; i++) {
-	           m_plateau[i] = new Case*[m_taille] ;
-	           for (int j = 0 ; j < m_taille ; j++) {
-	                this->setCase(Point(i,j), p.getCase(Point(i,j))) ;
-	           }
-	        }
+	        m_plateau = new Case[m_taille][m_taille];
+			for (int i = 0; i < m_taille; i ++) {
+				for (int j = 0; j < m_taille; j ++) {
+					m_plateau.setCase(new Point(i,j), p.getCase(new Point(i,j))) ;
+				}
+			}
 	     }
-	     return *this;
+	     return this;
+	}*/
+	
+	public boolean equals(Plateau p) {
+		
+		boolean res = true;
+		
+		int i = 0, j=0;
+		
+		while(res && i<m_taille) {
+			while(res && j<m_taille) {
+				if (! m_plateau[i][j].equals(p.getCase(new Point(i,j))))
+					res = false;
+				j++;
+			}
+			i++;
+		}
+		
+		return res;
 	}
 
-	void Plateau::melangePlateau()
+	public void melangePlateau()
 	{
 	    int echangeok = 0 ;
 	    int nbechange = m_taille * m_taille;
-
-	    Case *vide = new Vide(Point()) ;
 
 	    while(echangeok < nbechange)
 	    {
@@ -211,21 +226,21 @@ public class Plateau{
 	    {
 	        for  (int j=0;j<m_taille;j++)
 	        {
-	            getCase(Point(i,j)).setCase_bloquee(false);
+	            getCase(new Point(i,j)).setCase_bloquee(false);
 	        }
 	    }
 
-	    delete vide;
-
 	}
 
-	Point Plateau::genererCoord()
+	public Point genererCoord()
 	{
-
-	    return Point((rand() % m_taille) ,(rand() % m_taille ));
+		Random random = new Random();
+        int x = random.nextInt(m_taille) ;
+        int y = random.nextInt(m_taille) ;
+        
+	    return new Point(x,y);
 	}
 
-	*/
 	
 	
 	

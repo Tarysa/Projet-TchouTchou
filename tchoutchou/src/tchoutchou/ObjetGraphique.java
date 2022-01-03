@@ -22,7 +22,7 @@ public abstract class ObjetGraphique {
 	*/
 	public ObjetGraphique(Point p) {
 		
-		m_p = p;
+		m_p = new Point(p);
 	}
 		
 	/**
@@ -40,7 +40,7 @@ public abstract class ObjetGraphique {
 	 */
     public void setPoint(Point p) {
     	
-    	this.m_p = p;
+    	m_p = new Point(p);
     }
     
     /**

@@ -61,8 +61,8 @@ public class RailCourbeHD extends Case{
 		
 		   Point pt = new Point();
 
-		    int x0 = (int)this.centre_rotation().getX() ;
-		    int y0 = (int)this.centre_rotation().getY() ;
+		    int x0 = (int)centre_rotation().getX() ;
+		    int y0 = (int)centre_rotation().getY() ;
 
 		    if (sens)
 		    {

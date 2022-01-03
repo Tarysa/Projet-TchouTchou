@@ -146,7 +146,7 @@ public class jeu extends JDialog {
 				update();
 			}
 		};
-		monTimer.schedule(task, new Date(), 50);
+		monTimer.schedule(task, new Date(), 5);
 	}
 
 	private void formMouseClicked(MouseEvent evt) {
@@ -203,27 +203,28 @@ public class jeu extends JDialog {
 
 		JFrame frame = new JFrame("Pop up");
 		String mess;
-
+		
 		t_fantome.setPoint(jeu.getTrain().getPoint());
 		t_fantome.deplacer(jeu.getPlateau().getCase(p_case), jeu.getTrain().getSens());
 
 		if (jeu.getTrain().getSens() == 0) {
 			monTimer.cancel();
+			monTimer = new Timer();
 			initJeu(false);
 			if ((jeu.getFaute() % 3 == 0) && (jeu.getFaute() <= 3 * jeu.getPlateau().getTaille()) && mainwindow.aide) {
 				jeu.aide(jeu.getFaute() / 3);
 				mess = "Une aide vous a été fournie";
 			} else
-				mess = "Perdu";
+				mess = "Perdu : sens";
 			JOptionPane.showMessageDialog(frame, mess);
 		} else {
 			if (jeu.estalaSortie(t_fantome)) {
 				monTimer.cancel();
+				monTimer = new Timer();
 				JOptionPane.showMessageDialog(frame, "Gagné");
 				initJeu(true);
 			} else {
 				jeu.deplacerTrain(jeu.getPlateau().getCase(p_case));
-
 				t_fantome.deplacer(jeu.getPlateau().getCase(p_case), jeu.getTrain().getSens());
 
 				if (!jeu.getTrain().estDansCase(jeu.getPlateau().getCase(p_case))) {
@@ -231,13 +232,14 @@ public class jeu extends JDialog {
 					p_case = jeu.dansQuelleCase(t_fantome.getPoint());
 					if (p_case.getX() == -1 || p_case.getY() == -1) {
 						monTimer.cancel();
+						monTimer = new Timer();
 						initJeu(false);
 						if ((jeu.getFaute() % 3 == 0) && (jeu.getFaute() <= 3 * jeu.getPlateau().getTaille())
 								&& mainwindow.aide) {
 							jeu.aide(jeu.getFaute() / 3);
 							mess = "Une aide vous a été fournie";
 						} else
-							mess = "Perdu";
+							mess = "Perdu : chemin incompatible";
 						JOptionPane.showMessageDialog(frame, mess);
 					} else
 						// Future sens

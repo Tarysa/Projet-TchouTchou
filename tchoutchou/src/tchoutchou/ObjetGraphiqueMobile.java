@@ -19,7 +19,7 @@ public abstract class ObjetGraphiqueMobile extends ObjetGraphique{
 	 */
 	public ObjetGraphiqueMobile(Point p) {
 		
-		super(p);
+		super(new Point(p));
 		m_type = 1;
 	}
 	
@@ -30,7 +30,7 @@ public abstract class ObjetGraphiqueMobile extends ObjetGraphique{
 	 */
 	public ObjetGraphiqueMobile(Point p, int type) {
 		
-		super(p);
+		super(new Point(p));
 		m_type = type;
 	}
 	

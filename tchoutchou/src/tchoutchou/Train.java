@@ -23,7 +23,7 @@ public class Train extends ObjetGraphiqueMobile{
 	 * @param p : Point qui correspond à l'endroit où se trouvera cet objet graphique
 	 */
 	public Train(Point p) {
-		super(p);
+		super(new Point(p));
 		m_EnDeplacement = false;
 		m_sens = 1;
 	}

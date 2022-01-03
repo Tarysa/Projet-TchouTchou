@@ -17,6 +17,6 @@ public abstract class ObjetGraphiqueFixe extends ObjetGraphique{
 	 */
 	public ObjetGraphiqueFixe(Point p) {
 			
-		super(p);
+		super(new Point(p));
 	}
 }
