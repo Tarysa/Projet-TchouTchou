@@ -38,25 +38,25 @@ public class Recompense {
 		// Affichage Train 2
 		g.setColor(p2);
 		g.drawRect(300, 100, 125, 125);
-		g.drawImage(new ImageIcon("ImageTchouTchou/FondNeige.png").getImage(), 300, 100, 125, 125, null);
+		g.drawImage(new ImageIcon("ImageTchouTchou/FondNeige.jpg").getImage(), 300, 100, 125, 125, null);
 		g.drawImage(new ImageIcon("ImageTchouTchou/TrainBleuRougeST.png").getImage(), 312, 112, 100, 100, null);
 
 		// Affichage Train 3
 		g.setColor(p3);
 		g.drawRect(100, 400, 125, 125);
-		g.drawImage(new ImageIcon("ImageTchouTchou/FondAutomne.png").getImage(), 100, 400, 125, 125, null);
+		g.drawImage(new ImageIcon("ImageTchouTchou/FondAutomne.jpg").getImage(), 100, 400, 125, 125, null);
 		g.drawImage(new ImageIcon("ImageTchouTchou/TrainOrangeMarronST.png").getImage(), 112, 412, 100, 100, null);
 
 		// Affichage Train 4
 		g.setColor(p4);
 		g.drawRect(300, 400, 125, 125);
-		g.drawImage(new ImageIcon("ImageTchouTchou/FondMarron.png").getImage(), 300, 400, 125, 125, null);
+		g.drawImage(new ImageIcon("ImageTchouTchou/FondMarron.jpg").getImage(), 300, 400, 125, 125, null);
 		g.drawImage(new ImageIcon("ImageTchouTchou/TrainOrangeVertST.png").getImage(), 312, 412, 100, 100, null);
 
 		// Affichage Train 5
 		g.setColor(p5);
 		g.drawRect(200, 250, 125, 125);
-		g.drawImage(new ImageIcon("ImageTchouTchou/FondKids.png").getImage(), 200, 250, 125, 125, null);
+		g.drawImage(new ImageIcon("ImageTchouTchou/FondKids.jpg").getImage(), 200, 250, 125, 125, null);
 		g.drawImage(new ImageIcon("ImageTchouTchou/TrainKidST.png").getImage(), 212, 262, 100, 100, null);
 
 		switch (NbTrainDebloque) {

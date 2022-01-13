@@ -62,12 +62,6 @@ public class TchouTchou {
 
 	}
 
-	/* public TchouTchou::~TchouTchou()
-	{
-	    delete m_plateau;
-	    delete m_plateauSoluce;
-	} */
-
 	public Train getTrain()
 	{
 	    return m_train ;
@@ -117,53 +111,35 @@ public class TchouTchou {
 	            m_plateauSoluce.setCase(new Point(1,1), m_plateau.InitCase(new RailCourbeGB(new Point()),new Point(1,1))) ;
 	            m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase(new TraverseeVerticale(new Point()),new Point(1,2))) ;
 	            m_plateauSoluce.setCase(new Point(2,0), m_plateau.InitCase(new RailCourbeGH(new Point()),new Point(2,0))) ;
-	            m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase(new RailCourbeHD(new Point()),new Point(2,1))) ;
-	            m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase(new TraverseeHorizontale(new Point()),new Point(2,2))) ;
+	            m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase(new TraverseeVerticale(new Point()),new Point(2,1))) ;
+	            m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase(new Croisement(new Point()),new Point(2,2))) ;
 	        }
 	        else {
 	            if (m_num_soluce == 1)
 	            {
-	                Case  c1 = new TraverseeHorizontale(new Point()) ;
-	                Case  c2 = new TraverseeHorizontale(new Point()) ;
-	                Case  c3 = new RailCourbeGB(new Point()) ;
-	                Case  c4 = new TraverseeVerticale(new Point()) ;
-	                Case  c5 = new RailCourbeBD(new Point()) ;
-	                Case  c6 = new RailCourbeGH(new Point()) ;
-	                Case  c7 = new Vide(new Point()) ;
-	                Case  c8 = new RailCourbeHD(new Point()) ;
-	                Case  c9 = new TraverseeHorizontale(new Point()) ;
 
-	                m_plateauSoluce.setCase(new Point(0,0), m_plateau.InitCase( c1,new Point(0,0))) ;
-	                m_plateauSoluce.setCase(new Point(0,1), m_plateau.InitCase( c2,new Point(0,1))) ;
-	                m_plateauSoluce.setCase(new Point(0,2), m_plateau.InitCase( c3,new Point(0,2))) ;
-	                m_plateauSoluce.setCase(new Point(1,0), m_plateau.InitCase( c4,new Point(1,0))) ;
-	                m_plateauSoluce.setCase(new Point(1,1), m_plateau.InitCase( c5,new Point(1,1))) ;
-	                m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase( c6,new Point(1,2))) ;
-	                m_plateauSoluce.setCase(new Point(2,0), m_plateau.InitCase( c7,new Point(2,0))) ;
-	                m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase( c8,new Point(2,1))) ;
-	                m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase( c9,new Point(2,2))) ;
+	                m_plateauSoluce.setCase(new Point(0,0), m_plateau.InitCase( new TraverseeHorizontale(new Point()),new Point(0,0))) ;
+	                m_plateauSoluce.setCase(new Point(0,1), m_plateau.InitCase( new TraverseeHorizontale(new Point()),new Point(0,1))) ;
+	                m_plateauSoluce.setCase(new Point(0,2), m_plateau.InitCase( new RailCourbeGB(new Point()),new Point(0,2))) ;
+	                m_plateauSoluce.setCase(new Point(1,0), m_plateau.InitCase( new TraverseeVerticale(new Point()),new Point(1,0))) ;
+	                m_plateauSoluce.setCase(new Point(1,1), m_plateau.InitCase( new RailCourbeBD(new Point()),new Point(1,1))) ;
+	                m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase( new RailCourbeGH(new Point()),new Point(1,2))) ;
+	                m_plateauSoluce.setCase(new Point(2,0), m_plateau.InitCase( new Vide(new Point()),new Point(2,0))) ;
+	                m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase( new Croisement(new Point()),new Point(2,1))) ;
+	                m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase( new TraverseeHorizontale(new Point()),new Point(2,2))) ;
 	            }
 	            else
 	            {
-	                Case  c1 = new RailCourbeGB(new Point()) ;
-	                Case  c2 = new TraverseeHorizontale(new Point()) ;
-	                Case  c3 = new TraverseeVerticale(new Point()) ;
-	                Case  c4 = new TraverseeVerticale(new Point()) ;
-	                Case  c5 = new Vide(new Point()) ;
-	                Case  c6 = new RailCourbeGB(new Point()) ;
-	                Case  c7 = new RailCourbeHD(new Point()) ;
-	                Case  c8 = new TraverseeHorizontale(new Point()) ;
-	                Case  c9 = new TraverseeHorizontale(new Point()) ;
 
-	                m_plateauSoluce.setCase(new Point(0,0), m_plateau.InitCase( c1,new Point(0,0))) ;
-	                m_plateauSoluce.setCase(new Point(0,1), m_plateau.InitCase( c2,new Point(0,1))) ;
-	                m_plateauSoluce.setCase(new Point(0,2), m_plateau.InitCase( c3,new Point(0,2))) ;
-	                m_plateauSoluce.setCase(new Point(1,0), m_plateau.InitCase( c4,new Point(1,0))) ;
-	                m_plateauSoluce.setCase(new Point(1,1), m_plateau.InitCase( c5,new Point(1,1))) ;
-	                m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase( c6,new Point(1,2))) ;
-	                m_plateauSoluce.setCase(new Point(2,0), m_plateau.InitCase( c7,new Point(2,0))) ;
-	                m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase( c8,new Point(2,1))) ;
-	                m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase( c9,new Point(2,2))) ;
+	                m_plateauSoluce.setCase(new Point(0,0), m_plateau.InitCase( new RailCourbeGB(new Point()),new Point(0,0))) ;
+	                m_plateauSoluce.setCase(new Point(0,1), m_plateau.InitCase( new TraverseeHorizontale(new Point()),new Point(0,1))) ;
+	                m_plateauSoluce.setCase(new Point(0,2), m_plateau.InitCase( new TraverseeVerticale(new Point()),new Point(0,2))) ;
+	                m_plateauSoluce.setCase(new Point(1,0), m_plateau.InitCase( new Croisement(new Point()),new Point(1,0))) ;
+	                m_plateauSoluce.setCase(new Point(1,1), m_plateau.InitCase( new Vide(new Point()),new Point(1,1))) ;
+	                m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase( new RailCourbeGB(new Point()),new Point(1,2))) ;
+	                m_plateauSoluce.setCase(new Point(2,0), m_plateau.InitCase( new RailCourbeHD(new Point()),new Point(2,0))) ;
+	                m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase( new TraverseeHorizontale(new Point()),new Point(2,1))) ;
+	                m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase( new TraverseeHorizontale(new Point()),new Point(2,2))) ;
 	            }
 	       }
 	    }

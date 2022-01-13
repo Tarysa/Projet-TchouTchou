@@ -76,7 +76,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setStroke(new BasicStroke(50)) ;
     		
     		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
-    		g.setColor(new Color(0, 153, 0)) ;
+    		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
     		
     	}
@@ -85,7 +85,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setStroke(new BasicStroke(50)) ;
     		
     		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() + 80, 240, 240, 90, -90) ;
-    		g.setColor(new Color(0, 153, 0)) ;
+    		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() + 120, 160, 160, 90, -90) ;
     	}
     	else if (this instanceof RailCourbeBD) {
@@ -93,7 +93,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setStroke(new BasicStroke(50)) ;
     		
     		g.fillArc((int)m_p.getX() + 80, (int)m_p.getY() + 80, 240, 240, 90, 90) ;
-    		g.setColor(new Color(0, 153, 0)) ;
+    		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() + 120, (int)m_p.getY() + 120, 160, 160, 90, 90) ;
     	}
     	else if (this instanceof RailCourbeHD) {
@@ -101,7 +101,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setStroke(new BasicStroke(50)) ;
     		
     		g.fillArc((int)m_p.getX() + 80, (int)m_p.getY() - 120, 240, 240, -90, -90) ;
-    		g.setColor(new Color(0, 153, 0)) ;
+    		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() + 120, (int)m_p.getY() - 80, 160, 160, -90, -90) ;
     	}
     	else if (this instanceof TraverseeHorizontale) {
@@ -115,6 +115,15 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(1)) ;
     		
+    		g.drawRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;
+            g.fillRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;
+    	}
+    	else if (this instanceof Croisement) {
+    		g.setColor(new Color(139,0,0)) ;
+    		g.setStroke(new BasicStroke(1)) ;
+    		
+    		g.drawRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
+            g.fillRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
     		g.drawRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;
             g.fillRect((int)m_p.getX() + 80 , (int)m_p.getY(), 40, 200) ;
     	}

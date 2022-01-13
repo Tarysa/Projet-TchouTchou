@@ -2,12 +2,22 @@ package tchoutchou;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -18,6 +28,8 @@ import java.util.TimerTask;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 public class jeu extends JDialog {
 
@@ -35,6 +47,8 @@ public class jeu extends JDialog {
 
 	private TimerTask task;
 
+	private Clip clip = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -135,18 +149,72 @@ public class jeu extends JDialog {
 	}
 
 	public void cliquerFeu() {
+		
+		File f = new File("./" + "son/jingle.wav");
+	    AudioInputStream audioIn = null;
+		try {
+			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+		} catch (UnsupportedAudioFileException | IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}  
+		try {
+			clip = AudioSystem.getClip();
+		} catch (LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    try {
+			clip.open(audioIn);
+		} catch (LineUnavailableException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    clip.start();
+	    
+	    // On fait une pause pour le jingle
+	    try {
+	    	  Thread.sleep(2000);//time is in ms (1000 ms = 1 second)
+	    	} catch (InterruptedException e) {e.printStackTrace();}
+	    clip.stop();
+	    
 		// Pré-réglage
 		jeu.getTrain().setEnDeplacement(true);
 		p_case = new Point(0, 0);
 		jeu.getTrain().setSens(jeu.getPlateau().getCase(p_case).sens(jeu.getTrain()));
 		jeu.getFeu().MiseAuVert();
+		
+		//Ajout du son
+		f = new File("./" + "son/son.wav");
+		audioIn = null;
+		try {
+			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+		} catch (UnsupportedAudioFileException | IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}  
+		try {
+			clip = AudioSystem.getClip();
+		} catch (LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    try {
+			clip.open(audioIn);
+		} catch (LineUnavailableException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    clip.start();
+			    
 		// Lancement du timer
 		task = new TimerTask() {
 			public void run() {
 				update();
 			}
 		};
-		monTimer.schedule(task, new Date(), 5);
+		monTimer.schedule(task, new Date(), 10);
+		
 	}
 
 	private void formMouseClicked(MouseEvent evt) {
@@ -184,7 +252,7 @@ public class jeu extends JDialog {
 						Recom.setVisible(true);
 					} else {
 						if ((p.getX() <= 350 && p.getX() >= 250) && (p.getY() >= 35 && p.getY() <= 135)) {
-							this.setVisible(false);
+							setVisible(false);
 						} else {
 							if ((p.getX() <= 650 && p.getX() >= 550) && (p.getY() >= 35 && p.getY() <= 135)) {
 								jeu.initPlateau();
@@ -195,7 +263,6 @@ public class jeu extends JDialog {
 				}
 			}
 		}
-
 		repaint();
 	}
 
@@ -209,6 +276,7 @@ public class jeu extends JDialog {
 
 		if (jeu.getTrain().getSens() == 0) {
 			monTimer.cancel();
+			clip.stop();
 			monTimer = new Timer();
 			initJeu(false);
 			if ((jeu.getFaute() % 3 == 0) && (jeu.getFaute() <= 3 * jeu.getPlateau().getTaille()) && mainwindow.aide) {
@@ -220,10 +288,37 @@ public class jeu extends JDialog {
 		} else {
 			if (jeu.estalaSortie(t_fantome)) {
 				monTimer.cancel();
+				clip.stop();
 				monTimer = new Timer();
 				JOptionPane.showMessageDialog(frame, "Gagné");
 				initJeu(true);
 			} else {
+				if (jeu.getTrain().getPoint().equals(new Point((int)jeu.getPlateau().getCase(p_case).getPoint().getX()+ 100 ,(int)jeu.getPlateau().getCase(p_case).getPoint().getY() + 100 )) && (jeu.getPlateau().getCase(p_case) instanceof Croisement)) {
+					
+					/*Object[] animal = {"Haut", "Bas","Droite", "Gauche"};
+				    Object choix = JOptionPane.showInputDialog(null,"Choisissez un animal", "Zoo virtuel",JOptionPane.INFORMATION_MESSAGE, null, animal, animal[0]);*/
+					
+					JOptionPane d = new JOptionPane();
+					ImageIcon lesTextes[] = { new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png")};
+					int choix = d.showOptionDialog(this, "Veuillez choisir votre trajectoire !!", "Choix de la trajectoire",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,null, lesTextes,lesTextes[0]);
+
+			        if (choix == 0) {
+			            jeu.getTrain().setSens(2);
+			            Croisement.direction = 1;
+			        }
+			        else if (choix == 1) {
+			        	jeu.getTrain().setSens(1);
+			        	Croisement.direction = 2;
+			        }
+			        else if (choix == 2) {
+			        	jeu.getTrain().setSens(2);
+			        	Croisement.direction = 2;
+			        }
+			        else {
+			        	jeu.getTrain().setSens(1);
+			        	Croisement.direction = 1;
+			        }
+				}
 				jeu.deplacerTrain(jeu.getPlateau().getCase(p_case));
 				t_fantome.deplacer(jeu.getPlateau().getCase(p_case), jeu.getTrain().getSens());
 
@@ -232,6 +327,7 @@ public class jeu extends JDialog {
 					p_case = jeu.dansQuelleCase(t_fantome.getPoint());
 					if (p_case.getX() == -1 || p_case.getY() == -1) {
 						monTimer.cancel();
+						clip.stop();
 						monTimer = new Timer();
 						initJeu(false);
 						if ((jeu.getFaute() % 3 == 0) && (jeu.getFaute() <= 3 * jeu.getPlateau().getTaille())
@@ -255,7 +351,7 @@ public class jeu extends JDialog {
 			if (mainwindow.NbPartie <= 4)
 				mainwindow.NbPartie++;
 			jeu.setFaute(0);
-			// jeu.getPlateau().melangePlateau();
+			jeu.initPlateau();
 		} else
 			jeu.incrFaute();
 

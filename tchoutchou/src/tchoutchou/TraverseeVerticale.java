@@ -41,7 +41,7 @@ public class TraverseeVerticale extends Case {
 		
 		int sens = 0;
 		
-		if ( (t.getPoint().getX() <= m_p.getX()) && (t.getPoint().getY() == m_p.getY()))
+		if ( (t.getPoint().getX() <= m_p.getX() + 100) && (t.getPoint().getY() == m_p.getY()))
 			sens = 1;
 		else
 		{

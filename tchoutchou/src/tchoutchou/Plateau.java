@@ -153,36 +153,6 @@ public class Plateau{
 	    return nouv ;
 
 	}
-
-	/* operator==(const Plateau& p1,const Plateau& p2)
-	{
-	    bool egaux = true;
-
-	    for (int i=0;i<p1.getTaille();i++)
-	    {
-	        for  (int j=0;j<p1.getTaille();j++)
-	        {
-	            if (p1.getCase(Point(i,j)).getType() != p2.getCase(Point(i,j)).getType())
-	               egaux = false;
-	        }
-	    }
-	    return egaux;
-	}
-
-	public Plateau operatorEqual(Plateau p){
-
-	    if (this != p)
-	     {
-	        m_taille = p.getTaille() ;
-	        m_plateau = new Case[m_taille][m_taille];
-			for (int i = 0; i < m_taille; i ++) {
-				for (int j = 0; j < m_taille; j ++) {
-					m_plateau.setCase(new Point(i,j), p.getCase(new Point(i,j))) ;
-				}
-			}
-	     }
-	     return this;
-	}*/
 	
 	public boolean equals(Plateau p) {
 		

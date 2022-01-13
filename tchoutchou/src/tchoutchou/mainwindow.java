@@ -17,13 +17,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class mainwindow extends JFrame {
+public class mainwindow extends JFrame implements ActionListener{
 
 	private ImageIcon monImageFond = new ImageIcon("ImageTchouTchou/Gare.jpg");
 	private MonPanel contentPane;
 	static int niveau = 2;
 	static int NbPartie = 1;
 	static boolean aide = false;
+	private JCheckBox checkbox;
 
 	/**
 	 * Launch the application.
@@ -66,8 +67,9 @@ public class mainwindow extends JFrame {
 		btnPlay.setBounds(260, 220, 291, 81);
 
 		// Ici on place le check box
-		JCheckBox checkBox = new JCheckBox("Check");
-		checkBox.setBounds(100, 90, 16, 16);
+		checkbox = new JCheckBox("Check");
+		checkbox.setBounds(100, 90, 16, 16);
+		checkbox.addActionListener(this);
 
 		contentPane = new MonPanel(this);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,7 +78,7 @@ public class mainwindow extends JFrame {
 
 		// Ajout des boutons
 		contentPane.add(btnPlay);
-		contentPane.add(checkBox);
+		contentPane.add(checkbox);
 
 		// On regarde le click
 		contentPane.addMouseListener(new MouseAdapter() {
@@ -152,6 +154,15 @@ public class mainwindow extends JFrame {
 		}
 
 		repaint();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (checkbox.isSelected())
+			aide = true;
+		else
+			aide = false;
+		
 	}
 
 }
