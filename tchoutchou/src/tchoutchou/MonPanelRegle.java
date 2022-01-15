@@ -4,19 +4,27 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+/**
+ * Class <code>MonPanelRegle</code>La classe MonPanelRegle
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 @SuppressWarnings("serial")
 public class MonPanelRegle extends JPanel {
 
-	// RÃ©ference sur la fenÃªtre principale
+	/**
+	 * Référence sur la fenêtre règle
+	 */
 	private regle maFenetreRegle;
 
+	/**
+	 * 
+	 * @param fenetreRegle : fenêtre de règle
+	 */
 	public MonPanelRegle(regle fenetreRegle) {
 		maFenetreRegle = fenetreRegle;
 	}
 
-	/**
-	 * Gestionnaire d'evenement associe a l'evenement "paint" du panel.
-	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

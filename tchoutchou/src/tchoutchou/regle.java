@@ -13,13 +13,26 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Class <code>regle</code>La classe regle permettant d'afficher les règles au joueur
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 public class regle extends JDialog {
 
+	/**
+	 * Panel lié aux règles
+	 */
 	private MonPanelRegle contentPanel;
+	
+	/**
+	 * Attribut lié à la page des règles affichées
+	 */
 	private int numPage = 1;
 
 	/**
-	 * Launch the application.
+	 * 
+	 * @param args : argument
 	 */
 	public static void main(String[] args) {
 		try {
@@ -57,11 +70,15 @@ public class regle extends JDialog {
 
 	}
 
+	/**
+	 * Gestionnaire d'évenement lors du clic
+	 * @param evt : evenement
+	 */
 	private void formMouseClicked(MouseEvent evt) {
-		// On rÃ©cupere les coordonnÃ©es du pointeur de la souris dans la fenÃªtre
+		// On récupere les coordonnées du pointeur de la souris dans la fenêtre
 		int sourisX = evt.getPoint().x;
 		int sourisY = evt.getPoint().y;
-		// On fait le changement de repÃ¨re pour se ramener au ContentPane
+		// On fait le changement de repère pour se ramener au ContentPane
 
 		if ((sourisX >= 120 && sourisX <= 160) && (sourisY >= 450 && sourisY <= 490)) {
 			decrPage();
@@ -74,18 +91,28 @@ public class regle extends JDialog {
 
 	}
 
+	/**
+	 * Incrémentation du numéro de page courante
+	 */
 	private void incrPage() {
 		if (numPage <= 7) {
 			numPage++;
 		}
 	}
 
+	/**
+	 * Décrementation du numéro de page courante
+	 */
 	private void decrPage() {
 		if (numPage >= 2) {
 			numPage--;
 		}
 	}
 
+	/**
+	 * Affichage des règles
+	 * @param g : fenêtre graphique
+	 */
 	public void dessiner(Graphics g) {
 		// afficher(g);
 		switch (numPage) {

@@ -2,7 +2,7 @@ package tchoutchou;
 import java.awt.Point;
 
 /**
- * Class <code>Case</code>La classe RailCoubrGH permet de manipuler des Rails courbés du haut vers la gauche
+ * Class <code>RailCourbeGH</code>La classe RailCoubrGH permet de manipuler des Rails courbés du haut vers la gauche
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/12/2021
  */

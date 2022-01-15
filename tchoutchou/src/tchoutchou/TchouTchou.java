@@ -5,49 +5,81 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class <code>TchouTchou</code>La classe Tchoutchou permet de manipuler l'ensemble du jeu
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2021
+ */
 public class TchouTchou {
 
-        ///
-        /// \brief m_taille : entier qui correspond à la taille du plateau
-        ///
-        private int m_taille;
+    ///
+    /// \brief 
+    ///
+	/**
+	 * m_taille : entier qui correspond à la taille du plateau
+	 */
+    private int m_taille;
 
-        ///
-        /// \brief m_nbAide : entier qui correspond au nombre d'aides déjà dévoilé
-        ///
-        private int m_nbAide;
+    ///
+    /// \brief 
+    ///
+    /**
+     * m_nbAide : entier qui correspond au nombre d'aides déjà dévoilé
+     */
+    private int m_nbAide;
 
-        ///
-        /// \brief m_fautes : entier qui correspond au nombre de fois où le train n'est pas arrivé à la sortie
-        ///
-        private int m_fautes;
+    ///
+    /// \brief 
+    ///
+    /**
+     * m_fautes : entier qui correspond au nombre de fois où le train n'est pas arrivé à la sortie
+     */
+    private int m_fautes;
 
-        ///
-        /// \brief num_soluce : entier indiquant le plateau que l'utilisateur possède
-        ///
-        private int m_num_soluce;
+    ///
+    /// \brief 
+    ///
+    /**
+     * num_soluce : entier indiquant le plateau que l'utilisateur possède
+     */
+    private int m_num_soluce;
 
-        ///
-        /// \brief m_feu : feu du jeu
-        ///
-        private Feu m_feu;
+    ///
+    /// \brief 
+    ///
+    /**
+     * m_feu : feu du jeu
+     */
+    private Feu m_feu;
 
-        ///
-        /// \brief m_plateauSoluce : plateau contenant la solution qui permet à l'aide d'être mise en place
-        ///
-        private Plateau m_plateauSoluce;
+    ///
+    /// \brief 
+    ///
+    /**
+     * m_plateauSoluce : plateau contenant la solution qui permet à l'aide d'être mise en place
+     */
+    private Plateau m_plateauSoluce;
 
-        ///
-        /// \brief m_train : train du jeu
-        ///
-        private Train m_train ;
+    ///
+    /// \brief 
+    ///
+    /**
+     * m_train : train du jeu
+     */
+    private Train m_train ;
 
-        ///
-        /// \brief m_plateau : plateau du jeu
-        ///
-        private Plateau m_plateau ;
+    ///
+    /// \brief 
+    ///
+    /**
+     * m_plateau : plateau du jeu
+     */
+    private Plateau m_plateau ;
         
-        
+    /**
+     * Constructeur de la classe Tchoutchou
+     * @param taille : taille du plateau
+     */
 	public TchouTchou(int taille)
 	{
 	    m_taille = taille ;
@@ -62,26 +94,46 @@ public class TchouTchou {
 
 	}
 
+	/**
+	 * Accesseur de l'attribut train
+	 * @return renvoie le train du jeu
+	 */
 	public Train getTrain()
 	{
 	    return m_train ;
 	}
 
+	/**
+	 * Accesseur de l'attribut taille
+	 * @return renvoie la taille du plateau du jeu
+	 */
 	public int getTaille()
 	{
 	    return m_taille;
 	}
 
+	/**
+	 * Accesseur de l'attribut plateau
+	 * @return renvoie le plateau du jeu
+	 */
 	public Plateau getPlateau()
 	{
 	    return m_plateau ;
 	}
 
+	/**
+	 * Accesseur de l'attribut feu
+	 * @return renvoie le feu du jeu
+	 */
 	public Feu getFeu()
 	{
 	    return m_feu ;
 	}
 
+	/**
+	 * Méthode pour afficher les éléments du jeu
+	 * @param g : fenêtre graphique
+	 */
 	void afficher(Graphics2D g)
 	{
 	    m_plateau.afficher(g) ;
@@ -89,6 +141,9 @@ public class TchouTchou {
 	    m_feu.afficher(g);
 	}
 
+	/**
+	 * Méthode initPlateau qui permet d'initialiser le plateau et le plateau solution
+	 */
 	public void initPlateau()
 	{
 
@@ -156,7 +211,11 @@ public class TchouTchou {
 	    m_fautes = 0;
 	}
 
-
+	/**
+	 * Méthode dansQuelleCase qui permet de savoir à partir d'un point de la fenêtre dans quelle case on se trouve
+	 * @param p : Point de notre fenêtre
+	 * @return renvoie ligne et colonne du plateau ou se trouve notre point , (-1,-1) si on se trouve à coté du plateau
+	 */
 	public Point dansQuelleCase(Point p)
 	{
 
@@ -174,11 +233,20 @@ public class TchouTchou {
 
 	}
 
+	/**
+	 * Méthode deplacertrain qui permet de déplacer le train dans une case du plateau
+	 * @param c : case du plateau
+	 */
 	public void deplacerTrain(Case c)
 	{
 	    getTrain().deplacer(c,getTrain().getSens());
 	}
 
+	/**
+	 * Méthode estalaSortie qui permet de regarder si le train est à la sortie du plateau
+	 * @param t : train 
+	 * @return renvoie True si le train est à la sortie et false sinon
+	 */
 	public boolean estalaSortie(Train t)
 	{
 	    boolean sortie = false;
@@ -189,21 +257,36 @@ public class TchouTchou {
 	    return sortie;
 	}
 
+	/**
+	 * Mutateur de l'attribut m_fautes
+	 * @param faute : nombre de fautes commises
+	 */
 	public void setFaute(int faute)
 	{
 	    m_fautes = faute ;
 	}
 
+	/**
+	 * Méthode incrFaute qui permet d'augmenter le nombre de faute du joueur
+	 */
 	public void incrFaute()
 	{
 	    m_fautes ++ ;
 	}
 
+	/**
+	 * Accesseur de l'attribut m_fautes
+	 * @return le nombre de fautes déjà commises
+	 */
 	public int getFaute()
 	{
 	    return m_fautes ;
 	}
 
+	/**
+	 * Méthode aide qui permet d'executer une aide en fonction du nombre d'aide déjà dévoilé, uniquement si l'aide à été activé
+	 * @param nbAide : entier qui correspond au nombre d'aide déjà dévoilé
+	 */
 	public void aide(int nbAide)
 	{
 

@@ -3,7 +3,7 @@ package tchoutchou;
 import java.awt.Point;
 
 /**
- * Class <code>Case</code>La classe TraverseeVerticale permet de manipuler des Rails verticaux
+ * Class <code>TraverseeVerticale</code>La classe TraverseeVerticale permet de manipuler des Rails verticaux
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/12/2021
  */

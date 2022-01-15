@@ -17,17 +17,46 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Class <code>mainwindow</code>La classe mainwindow permet d'afficher notre page d'accueils
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 public class mainwindow extends JFrame implements ActionListener{
 
+	/**
+	 * Image de fond
+	 */
 	private ImageIcon monImageFond = new ImageIcon("ImageTchouTchou/Gare.jpg");
+	
+	/**
+	 * Panel lié au mainwindow
+	 */
 	private MonPanel contentPane;
+	
+	/**
+	 * Niveau du jeu (2x2 ou 3x3)
+	 */
 	static int niveau = 2;
+	
+	/**
+	 * Nombre de partie joué
+	 */
 	static int NbPartie = 1;
+	
+	/**
+	 * Aide au joueur 
+	 */
 	static boolean aide = false;
+	
+	/**
+	 * Checkbow lié à l'aide
+	 */
 	private JCheckBox checkbox;
 
 	/**
-	 * Launch the application.
+	 * 
+	 * @param args : arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -90,11 +119,19 @@ public class mainwindow extends JFrame implements ActionListener{
 
 	}
 
+	/**
+	 * Affichage du fond de la page d'accueil
+	 * @param g : fenêtre graphique
+	 */
 	public void dessiner(Graphics g) {
 		g.drawImage(monImageFond.getImage(), 0, 0, 800, 600, null);
 		selectniv((Graphics2D) g);
 	}
 
+	/**
+	 * Méthode permettant d'afficher graphiquement le niveau voulu
+	 * @param g : fenêtre graphique
+	 */
 	public void selectniv(Graphics2D g) {
 		// Cas 2x2 et 3x3
 		Color c2x2 = new Color(0, 0, 0);
@@ -136,6 +173,10 @@ public class mainwindow extends JFrame implements ActionListener{
 
 	}
 
+	/**
+	 * 
+	 * @param evt : Evenement lié au clic
+	 */
 	private void formMouseClicked(MouseEvent evt) {
 		// On rÃ©cupere les coordonnÃ©es du pointeur de la souris dans la fenÃªtre
 		int sourisX = evt.getPoint().x;

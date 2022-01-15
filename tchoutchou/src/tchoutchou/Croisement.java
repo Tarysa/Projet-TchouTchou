@@ -3,12 +3,10 @@ package tchoutchou;
 import java.awt.Point;
 
 /**
- * Class <code>Case</code>La classe TraverseeHorizontale permet de manipuler des croisements
+ * Class <code>Croisement</code>La classe Croisement permet de manipuler des croisements
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
- * @version 1.0 06/12/2021
+ * @version 1.0 06/01/2022
  */
-
-
 public class Croisement extends Case {
 	
 	static int direction = 0;
@@ -34,8 +32,9 @@ public class Croisement extends Case {
 	/**
 	 * Méthode sens permettant de calculer le sens du train dans le rail
 	 * On regarde les coordonnées d'entrée dans la case pour derterminer le sens
+	 * La direction va être également modifiée afin de déterminer si l'objet doit se déplacer suivant l'axe horizontale ou verticale
 	 * @param t : objetgraphiquemobile qui va traverser le rail
-	 * @return : renvoie 1 si l'objet t traverse la rail dans sens gauche -> droite, 2 si l'objet t traverse la rail dans sens gauche -> droite, 0 s'il ne peut pas traverser
+	 * @return : renvoie 1 si l'objet t traverse la rail dans sens gauche -> droite ou haut-> bas, 2 si l'objet t traverse la rail dans sens droite-> gauche ou bas -> haut, 0 s'il ne peut pas traverser
 	 */
 	@Override
 	public int sens(ObjetGraphiqueMobile t) {
@@ -80,15 +79,15 @@ public class Croisement extends Case {
 
 		    if (sens) {
 		    	if (direction == 1)
-		    		pt.setLocation((int)p.getX() + 1, (int)p.getY()) ;
+		    		pt.setLocation((int)p.getX() + 1, (int)p.getY()) ; // On avance dans le sens horaire suivant l'axe horizontale
 		    	else
-		    		pt.setLocation((int)p.getX() , (int)p.getY() + 1) ;
+		    		pt.setLocation((int)p.getX() , (int)p.getY() + 1) ;// On avance dans le sens horaire suivant l'axe verticale
 		    }
 		    else
 		    	if (direction == 2)
-		    		pt.setLocation((int)p.getX() - 1, (int)p.getY()) ;
+		    		pt.setLocation((int)p.getX() - 1, (int)p.getY()) ;// On avance dans le sens anti-horaire suivant l'axe horizontale
 		    	else
-		    		pt.setLocation((int)p.getX() , (int)p.getY() - 1) ;
+		    		pt.setLocation((int)p.getX() , (int)p.getY() - 1) ;// On avance dans le sens anti-horaire suivant l'axe verticale
 
 		    return pt ;
 

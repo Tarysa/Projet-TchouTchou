@@ -13,14 +13,27 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
+/**
+ * Class <code>FenetreRecompense</code>La classe FenetreRecompense permet d'afficher la collection
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 public class FenetreRecompense extends JDialog {
 
+	/**
+	 * Panel associé à la fenêtre de récompense
+	 */
 	private MonPanelRecompense contentPanel;
 
+	/**
+	 * Collection du joueur
+	 */
 	private Recompense Collection = new Recompense();
 
 	/**
-	 * Launch the application.
+	 * 
+	 * @param args : arguments
 	 */
 	public static void main(String[] args) {
 		try {
@@ -57,6 +70,10 @@ public class FenetreRecompense extends JDialog {
 
 	}
 
+	/**
+	 * Méthode pour afficher la collection
+	 * @param g : fenêtre graphique
+	 */
 	public void dessiner(Graphics g) {
 		g.drawImage(new ImageIcon("ImageTchouTchou/FondTrophe.jpg").getImage(), 0, 0, 525, 600, null);
 		Collection.afficher((Graphics2D) g, mainwindow.NbPartie);

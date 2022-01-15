@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 
 
 /**
- * Class <code>Case</code>La classe Train permet de manipuler des trains
+ * Class <code>Train</code>La classe Train permet de manipuler des trains
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/12/2021
  */

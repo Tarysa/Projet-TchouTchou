@@ -4,19 +4,27 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+/**
+ * Class <code>MonPanelRecompense</code>La classe MonPanelRecompense
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 @SuppressWarnings("serial")
 public class MonPanelRecompense extends JPanel {
 
-	// RÃ©ference sur la fenÃªtre principale
+	/**
+	 * Référence sur la fenêtre de récompense
+	 */
 	private FenetreRecompense maFenetreRecompense;
 
+	/**
+	 * 
+	 * @param recompense : récompense
+	 */
 	public MonPanelRecompense(FenetreRecompense recompense) {
 		maFenetreRecompense = recompense;
 	}
 
-	/**
-	 * Gestionnaire d'evenement associe a l'evenement "paint" du panel.
-	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

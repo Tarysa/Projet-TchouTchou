@@ -3,7 +3,7 @@ package tchoutchou;
 import java.awt.Point;
 
 /**
- * Class <code>Case</code>La classe Vide permet de manipuler des cases vides
+ * Class <code>Vide</code>La classe Vide permet de manipuler des cases vides
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/12/2021
  */

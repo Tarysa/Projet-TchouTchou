@@ -4,10 +4,23 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
+/**
+ * Class <code>Recompense</code>La classe Récompense permet  de manipuler la collection de trains du joueur
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 public class Recompense {
 	
+	/**
+	 * entier qui correspond au numéro du train qui est selectionné par le joueur
+	 */
 	static int numTrain = 1;
 	
+	/**
+	 * Méthode afficher qui permet d'afficher la collection de train en grisant les trains non débloqués
+	 * @param g : fenêtre graphique
+	 * @param NbTrainDebloque : entier correspondant au nombre de trains qui sont débloqués
+	 */
 	public void afficher(Graphics2D g, int NbTrainDebloque) {
 		Color p1 = new Color(0, 0, 0);
 		Color p2 = new Color(0, 0, 0);

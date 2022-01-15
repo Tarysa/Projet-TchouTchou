@@ -5,7 +5,7 @@ import java.util.Random;
 import java.awt.Graphics2D;
 
 /**
- * Class <code>Case</code>La classe Plateau permet de manipuler le tableau de jeu
+ * Class <code>Plateau</code>La classe Plateau permet de manipuler le tableau de jeu
  * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 13/12/2021
  */
@@ -18,10 +18,14 @@ public class Plateau{
 	private int m_taille;
 	
 	/**
-	 * 
+	 * Matrice de case représentant le plateau
 	 */
 	private Case[][] m_plateau;
 	
+	/**
+	 * Constructeur de la classe Plateau
+	 * @param taille : entier correspondant à la taille du plateau
+	 */
 	public Plateau(int taille){
 		
 		m_taille = taille;
@@ -33,6 +37,10 @@ public class Plateau{
 		}
 	}
 	
+	/**
+	 * Constructeur de recopie pour le plateau
+	 * @param p : plateau servant pour la copie
+	 */
 	public Plateau(Plateau p){
 		
 		m_taille = p.m_taille;
@@ -44,26 +52,47 @@ public class Plateau{
 		}
 	}
 	
+	/**
+	 * Accesseur de la taille du plateau
+	 * @return renvoie la taille du plateau
+	 */
 	public int getTaille() {
 		return m_taille;
 	}
 	
+	/**
+	 * Mutateur pour mettre à jour une case du plateau
+	 * @param p : cooordonnées dans le plateau de la case à mettre à jour 
+	 * @param c : case à insérer dans le plateau
+	 */
 	public void setCase(Point p, Case c) {
 		m_plateau[(int)p.getX()][(int)p.getY()] = c;
 	}
 	
+	/**
+	 * Accesseur d'une case d'un plateau
+	 * @param p : coordonnées dans le plateau de la case voulue
+	 * @return renvoie la case 
+	 */
 	public Case getCase(Point p) {
 		return m_plateau[(int)p.getX()][(int)p.getY()];
 	}
 	
+	/**
+	 * Affichage d'une case
+	 * @param g : fenetre graphique
+	 */
 	public void afficher(Graphics2D g) {
 		
+		//Affichage par défaut des cases
 		for (int i = 0; i < m_taille; i ++) {
 			for (int j = 0; j < m_taille; j ++) {
 				getCase(new Point(i,j)).afficher(g);
 			}
 		}
 		
+		
+		//Suraffichage pour les cases sélectionnées ou dans un état bloqué
 		for (int i = 0; i < m_taille; i ++) {
 			for (int j = 0; j < m_taille; j ++) {
 				if ( (getCase(new Point(i,j)).getCase_Selectionnee()) || (getCase(new Point(i,j)).getCase_bloquee())) {
@@ -73,6 +102,11 @@ public class Plateau{
 		}
 	}
 	
+	/**
+	 * Méthode rechercheCase qui permet de chercher la case dans le tableau à partir d'un point se situant dans le plateau
+	 * @param p: Point qui correspond au coordonnée du point de la fenêtre
+	 * @return renvoie (-1,-1) si le point n'appartient pas au tableau sinon renvoie les coordonnées du plateau (ligne,colonne) si le point appartient au plateau
+	 */
 	public Point rechercheCase(Point p) {
 		
 		Point nouv = new Point(-1, -1);
@@ -88,8 +122,15 @@ public class Plateau{
 		
 	}
 	
+	/**
+	 * Méthode echangerCase qui permet d'échanger deux cases de notre plateau
+	 * @param c1 : première case du plateau à échanger
+	 * @param c2 : seconde case du plateau à échanger
+	 * @return renvoie true si l'échange à été effectuer, false si c'est immpossible
+	 */
 	public boolean echangerCase(Case c1, Case c2) {
 
+		// On recupère les coordonnées dans le plateau des deux cases
 	    Point v1 = rechercheCase(c1.getPoint()) ;
 	    Point v2 = rechercheCase(c2.getPoint()) ;
 
@@ -112,6 +153,12 @@ public class Plateau{
 
 	}
 	
+	/**
+	 * Méthode InitCase qui permet d'initialiser le point d'une case du plateau en fonction de sa position dans le plateau et de la taille du plateau
+	 * @param c : case du plateau à initialiser
+	 * @param coord_plateau : Point correspondant à sa place dans le plateau
+	 * @return renvoie la case ainsi modifiée
+	 */
 	public Case InitCase(Case c, Point coord_plateau)
 	{
 	    Point n_p = new Point();
@@ -130,6 +177,11 @@ public class Plateau{
 	    return c;
 	}
 
+	/**
+	 * Méthode rechercheCaseType qui permet de cherche une case dans le plateau à partir d'un type
+	 * @param type : entier type qui est recherché dans le plateau
+	 * @return renvoie (-1,-1) si le type na pas été trouvé dans le tableau sinon renvoie les coordonnées du plateau (ligne,colonne) qui correspond
+	 */
 	public Point rechercheCaseType(int type) {
 
 	    Point nouv = new Point(-1,-1) ;
@@ -151,9 +203,13 @@ public class Plateau{
 	    }
 
 	    return nouv ;
-
 	}
 	
+	/**
+	 * Surcharge de la méthode equals entre 2 objets
+	 * @param p : plateau à comparer avec la plateau courant
+	 * @return renvoie true si p possède les mêmes cases et false sinon
+	 */
 	public boolean equals(Plateau p) {
 		
 		boolean res = true;
@@ -171,7 +227,10 @@ public class Plateau{
 		
 		return res;
 	}
-
+	
+	/**
+	 * Méthode melangePlateau qui permet de mélanger les cases au sein du plateau
+	 */
 	public void melangePlateau()
 	{
 	    int echangeok = 0 ;
@@ -202,6 +261,10 @@ public class Plateau{
 
 	}
 
+	/**
+	 * Méthode genererCoord qui permet de generer un point aléatoire dans le plateau
+	 * @return renvoie un point entre 0 et la taille du plateau dans le plateau aléatoirement
+	 */
 	public Point genererCoord()
 	{
 		Random random = new Random();

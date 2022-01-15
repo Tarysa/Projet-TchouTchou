@@ -2,7 +2,6 @@ package tchoutchou;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -16,8 +15,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -28,29 +25,57 @@ import java.util.TimerTask;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
+/**
+ * Class <code>jeu</code>La classe jeu permet d'afficher notre jeu
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 public class jeu extends JDialog {
 
+	/**
+	 * Panel correspondant au jeu
+	 */
 	private MonPanelJeu contentPanel;
 
+	/**
+	 * contient toutes les informations du jeu
+	 */
 	private TchouTchou jeu;
 
+	/**
+	 * train qui possède une itération d'avance sur le train réel
+	 */
 	private Train t_fantome = new Train(new Point());
 
+	/**
+	 * coordonnée du plateau où se trouve la case selectionnée, (-1,-1) si aucune case n'est selectionnée
+	 */
 	private Point temp = new Point(-1, -1);
 
+	/**
+	 * case intiale où se trouve notre train
+	 */
 	private Point p_case;
 
+	/**
+	 * timer permettant de faire avancer notre train à intervalle de temps régulier
+	 */
 	private Timer monTimer;
 
+	/**
+	 * 
+	 */
 	private TimerTask task;
 
+	/**
+	 * son qui va s'activer lors du déplacement du train
+	 */
 	private Clip clip = null;
 	
 	/**
-	 * Launch the application.
+	 * 
+	 * @param args : argument
 	 */
 	public static void main(String[] args) {
 		try {
@@ -63,7 +88,7 @@ public class jeu extends JDialog {
 	}
 
 	/**
-	 * Create the dialog.
+	 * Constructeur de la classe jeu
 	 */
 	public jeu() {
 		setTitle("Partie de TchouTchou");
@@ -90,6 +115,10 @@ public class jeu extends JDialog {
 
 	}
 
+	/**
+	 * Méthode permettant d'afficher les divers éléments présents dans le jeu
+	 * @param g : fenêtre graphique
+	 */
 	public void dessiner(Graphics g) {
 		afficherFond((Graphics2D) g);
 		tracerFleche((Graphics2D) g);
@@ -97,6 +126,10 @@ public class jeu extends JDialog {
 
 	}
 
+	/**
+	 * Méthode permettant d'afficher le fond du plateau
+	 * @param g : fenêtre graphique
+	 */
 	public void afficherFond(Graphics2D g) {
 		switch (Recompense.numTrain) {
 		case 1:
@@ -123,6 +156,10 @@ public class jeu extends JDialog {
 		g.drawImage(new ImageIcon("ImageTchouTchou/logoRejouer.png").getImage(), 550, 35, 100, 100, null);
 	}
 
+	/**
+	 * Méthode permettant d'afficher les flèches présentent à l'entrée et sortie du plateau
+	 * @param g : fenêtre graphique
+	 */
 	public void tracerFleche(Graphics2D g) {
 		// Flèches du début
 		int x_entree = (int) jeu.getPlateau().getCase(new Point(0, 0)).getPoint().getX() - 100;
@@ -148,6 +185,9 @@ public class jeu extends JDialog {
 		g.fillPolygon(xValues3s, yValues3s, 3);
 	}
 
+	/**
+	 * Méthode permettant d'activer toutes les tâches lors de l'activation du feu
+	 */
 	public void cliquerFeu() {
 		
 		File f = new File("./" + "son/jingle.wav");
@@ -190,19 +230,16 @@ public class jeu extends JDialog {
 		try {
 			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
 		} catch (UnsupportedAudioFileException | IOException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}  
 		try {
 			clip = AudioSystem.getClip();
 		} catch (LineUnavailableException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	    try {
 			clip.open(audioIn);
 		} catch (LineUnavailableException | IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	    clip.start();
@@ -217,27 +254,35 @@ public class jeu extends JDialog {
 		
 	}
 
+	/**
+	 * Méthode permettant d'activer toutes les tâches lors d'un clic de souris
+	 * @param evt : évenement lié à un clic 
+	 */
 	private void formMouseClicked(MouseEvent evt) {
 
 		if (!jeu.getTrain().getEnDeplacement()) {
 			Point p = new Point(evt.getPoint().x, evt.getPoint().y);
+			// On regarde dans quelle case est le clic
 			if (jeu.dansQuelleCase(p).getX() != -1) {
 				if (temp.getX() == -1) {
 					temp = jeu.dansQuelleCase(p);
 					jeu.getPlateau().getCase(temp).setCase_Selectionnee(true);
-				} else {
+				} 
+				else {
 					Point p_aEchanger = jeu.dansQuelleCase(p);
 					Boolean echange_ok = jeu.getPlateau().echangerCase(jeu.getPlateau().getCase(temp),
 							jeu.getPlateau().getCase(p_aEchanger));
 					if (echange_ok) {
 						jeu.getPlateau().getCase(p_aEchanger).setCase_Selectionnee(false);
-					} else {
+					} 
+					else {
 						jeu.getPlateau().getCase(temp).setCase_Selectionnee(false);
 					}
 					temp = new Point(-1, -1);
 				}
 				repaint();
-			} else {
+			} 
+		else {
 				Point a = jeu.getFeu().getPoint();
 				if ((p.getX() <= a.getX() + 41 && p.getX() >= a.getX())
 						&& (p.getY() >= a.getY() && p.getY() <= a.getY() + 100))
@@ -250,10 +295,12 @@ public class jeu extends JDialog {
 							&& (p.getY() >= r.getY() && p.getY() <= r.getY() + 86)) {
 						FenetreRecompense Recom = new FenetreRecompense();
 						Recom.setVisible(true);
-					} else {
+					} 
+					else {
 						if ((p.getX() <= 350 && p.getX() >= 250) && (p.getY() >= 35 && p.getY() <= 135)) {
 							setVisible(false);
-						} else {
+						} 
+						else {
 							if ((p.getX() <= 650 && p.getX() >= 550) && (p.getY() >= 35 && p.getY() <= 135)) {
 								jeu.initPlateau();
 								repaint();
@@ -266,6 +313,9 @@ public class jeu extends JDialog {
 		repaint();
 	}
 
+	/**
+	 * Méthode permettant de déplacer le train en fonction du plateau
+	 */
 	public void update() {
 
 		JFrame frame = new JFrame("Pop up");
@@ -275,6 +325,7 @@ public class jeu extends JDialog {
 		t_fantome.deplacer(jeu.getPlateau().getCase(p_case), jeu.getTrain().getSens());
 
 		if (jeu.getTrain().getSens() == 0) {
+			// Le train sort du plateau
 			monTimer.cancel();
 			clip.stop();
 			monTimer = new Timer();
@@ -294,9 +345,6 @@ public class jeu extends JDialog {
 				initJeu(true);
 			} else {
 				if (jeu.getTrain().getPoint().equals(new Point((int)jeu.getPlateau().getCase(p_case).getPoint().getX()+ 100 ,(int)jeu.getPlateau().getCase(p_case).getPoint().getY() + 100 )) && (jeu.getPlateau().getCase(p_case) instanceof Croisement)) {
-					
-					/*Object[] animal = {"Haut", "Bas","Droite", "Gauche"};
-				    Object choix = JOptionPane.showInputDialog(null,"Choisissez un animal", "Zoo virtuel",JOptionPane.INFORMATION_MESSAGE, null, animal, animal[0]);*/
 					
 					JOptionPane d = new JOptionPane();
 					ImageIcon lesTextes[] = { new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png")};
@@ -346,6 +394,10 @@ public class jeu extends JDialog {
 		repaint();
 	}
 
+	/**
+	 * Méthode permettant de réinitialiser le jeu
+	 * @param win : booléen permettant de savoir si le joueur a gagné ou s'il s'agit d'une autre tentative
+	 */
 	public void initJeu(Boolean win) {
 		if (win) {
 			if (mainwindow.NbPartie <= 4)

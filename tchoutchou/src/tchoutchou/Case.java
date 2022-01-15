@@ -42,13 +42,12 @@ public abstract class Case extends ObjetGraphiqueMobile{
     
     /**
 	 * Méthode afficher permettant d'afficher le feu sur le jeu
-     * @param g 
+     * @param g : fenêtre graphique
 	 */
     @Override
     public void afficher(Graphics2D g) {
     	
     	Color defaut = new Color(0, 153, 0) ;
-    	BasicStroke strokeDefaut = new BasicStroke(1) ;
     	
     	if (case_bloquee) {
     		defaut = new Color(222,220,20) ;
@@ -75,7 +74,10 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setColor(new Color(139,0,0)) ;
     		g.setStroke(new BasicStroke(50)) ;
     		
+    		//Création d'un quart de cercle pour le rail
     		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() - 120, 240, 240, -90, 90) ;
+    		
+    		//Création d'un autre quart de cercle plus petit pour dessiner réellement le rail
     		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
     		
@@ -163,9 +165,9 @@ public abstract class Case extends ObjetGraphiqueMobile{
     }
     
     /**
-     * Redéfinition dans toutes les rails
+     * Accesseur du point
+     * @return renvoie le point lié à la position de la case au sein dans la fenetre
      */
-    
     public Point getPoint() {
     	return m_p;
     }

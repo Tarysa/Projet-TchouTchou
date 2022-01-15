@@ -4,19 +4,29 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+
+/**
+ * Class <code>MonPanel</code>La classe MonPanel
+ * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * @version 1.0 06/01/2022
+ */
 @SuppressWarnings("serial")
 public class MonPanel extends JPanel {
 
-	// RÃ©ference sur la fenÃªtre principale
+	/**
+	 * Référence à la fenetre principale
+	 */
 	private mainwindow maFenetrePrincipale;
 
+	/**
+	 * 
+	 * @param fenetrePrincipale : fenetre principale
+	 */
 	public MonPanel(mainwindow fenetrePrincipale) {
 		maFenetrePrincipale = fenetrePrincipale;
 	}
 
-	/**
-	 * Gestionnaire d'evenement associe a l'evenement "paint" du panel.
-	 */
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

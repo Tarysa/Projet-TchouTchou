@@ -44,7 +44,8 @@ public abstract class ObjetGraphique {
     }
     
     /**
-	 * Méthode abstraite Afficher
-	 */
+     * Méthode abstraite Afficher
+     * @param g : fenêtre graphique
+     */
 	public abstract void afficher(Graphics2D g);
 }
