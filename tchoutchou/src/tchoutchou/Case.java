@@ -2,6 +2,7 @@ package tchoutchou;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.BasicStroke;
 
@@ -81,6 +82,12 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() - 80, 160, 160, -90, 90) ;
     		
+    		g.setColor(new Color(9,82,40)) ;
+    		g.fillOval((int)m_p.getX() + 125, (int)m_p.getY() + 110 ,30,30);
+    		g.fillOval((int)m_p.getX() + 115, (int)m_p.getY() + 100 ,30,30);
+    		g.fillOval((int)m_p.getX() + 105, (int)m_p.getY() + 110 ,30,30);
+    		g.fillOval((int)m_p.getX() + 115, (int)m_p.getY() + 120 ,30,30);
+    		
     	}
     	else if (this instanceof RailCourbeGB) {
     		g.setColor(new Color(139,0,0)) ;
@@ -89,6 +96,19 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		g.fillArc((int)m_p.getX() - 120, (int)m_p.getY() + 80, 240, 240, 90, -90) ;
     		g.setColor(defaut) ;
     		g.fillArc((int)m_p.getX() - 80, (int)m_p.getY() + 120, 160, 160, 90, -90) ;
+    		
+    		g.setColor(new Color(128,0,0)) ;
+    		g.fillRoundRect((int)m_p.getX() + 140, (int)m_p.getY() + 70,20,60,10,10);
+    		
+    		g.setColor(new Color(9,82,40)) ;
+    		g.fillOval((int)m_p.getX() + 145, (int)m_p.getY() + 50 ,30,30);
+    		g.fillOval((int)m_p.getX() + 135, (int)m_p.getY() + 40 ,30,30);
+    		g.fillOval((int)m_p.getX() + 125, (int)m_p.getY() + 50 ,30,30);
+    		
+    		g.setColor(new Color(160,0,0)) ;
+    		g.fillOval((int)m_p.getX() + 145, (int)m_p.getY() + 50 ,5,5);
+    		g.fillOval((int)m_p.getX() + 155, (int)m_p.getY() + 55 ,5,5);
+    		g.fillOval((int)m_p.getX() + 145, (int)m_p.getY() + 60 ,5,5);
     	}
     	else if (this instanceof RailCourbeBD) {
     		g.setColor(new Color(139,0,0)) ;
@@ -112,6 +132,35 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		
     		g.drawRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
             g.fillRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
+            
+            Random random = new Random();
+            
+            g.setColor(new Color(9,82,40)) ;
+            
+            if (random.nextInt(2) == 0) {
+                g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 140, 40, 40, 20, 20);
+            }
+            else if (random.nextInt(2) == 1){
+            	g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 20, 40, 40, 20, 20);
+            }
+            else {
+                g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        		
+        		g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 20, 40, 40, 20, 20);
+            }
+            
     	}
     	else if (this instanceof TraverseeVerticale) {
     		g.setColor(new Color(139,0,0)) ;

@@ -28,7 +28,8 @@ import javax.swing.JOptionPane;
 
 /**
  * Class <code>jeu</code>La classe jeu permet d'afficher notre jeu
- * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * 
+ * @author Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/01/2022
  */
 public class jeu extends JDialog {
@@ -49,7 +50,8 @@ public class jeu extends JDialog {
 	private Train t_fantome = new Train(new Point());
 
 	/**
-	 * coordonnée du plateau où se trouve la case selectionnée, (-1,-1) si aucune case n'est selectionnée
+	 * coordonnée du plateau où se trouve la case selectionnée, (-1,-1) si aucune
+	 * case n'est selectionnée
 	 */
 	private Point temp = new Point(-1, -1);
 
@@ -72,7 +74,7 @@ public class jeu extends JDialog {
 	 * son qui va s'activer lors du déplacement du train
 	 */
 	private Clip clip = null;
-	
+
 	/**
 	 * 
 	 * @param args : argument
@@ -92,6 +94,7 @@ public class jeu extends JDialog {
 	 */
 	public jeu() {
 		setTitle("Partie de TchouTchou");
+		setIconImage(new ImageIcon("ImageTchouTchou/ID.png").getImage());
 
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((screenSize.width - 900) / 2, (screenSize.height - 800) / 2, 900, 800);
@@ -117,17 +120,18 @@ public class jeu extends JDialog {
 
 	/**
 	 * Méthode permettant d'afficher les divers éléments présents dans le jeu
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void dessiner(Graphics g) {
 		afficherFond((Graphics2D) g);
 		tracerFleche((Graphics2D) g);
 		jeu.afficher((Graphics2D) g);
-
 	}
 
 	/**
 	 * Méthode permettant d'afficher le fond du plateau
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void afficherFond(Graphics2D g) {
@@ -157,7 +161,9 @@ public class jeu extends JDialog {
 	}
 
 	/**
-	 * Méthode permettant d'afficher les flèches présentent à l'entrée et sortie du plateau
+	 * Méthode permettant d'afficher les flèches présentent à l'entrée et sortie du
+	 * plateau
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void tracerFleche(Graphics2D g) {
@@ -189,61 +195,38 @@ public class jeu extends JDialog {
 	 * Méthode permettant d'activer toutes les tâches lors de l'activation du feu
 	 */
 	public void cliquerFeu() {
-		
-		File f = new File("./" + "son/jingle.wav");
-	    AudioInputStream audioIn = null;
+
+		File f = new File("./" + "son/DebutGen.wav");
+		AudioInputStream audioIn = null;
 		try {
 			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
 		} catch (UnsupportedAudioFileException | IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
-		}  
+		}
 		try {
 			clip = AudioSystem.getClip();
 		} catch (LineUnavailableException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    try {
+		try {
 			clip.open(audioIn);
 		} catch (LineUnavailableException | IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    clip.start();
-	    
-	    // On fait une pause pour le jingle
-	    try {
-	    	  Thread.sleep(2000);//time is in ms (1000 ms = 1 second)
-	    	} catch (InterruptedException e) {e.printStackTrace();}
-	    clip.stop();
-	    
+		clip.start();
+
+		while (clip.getMicrosecondLength() != clip.getMicrosecondPosition()) {
+		}
+
 		// Pré-réglage
 		jeu.getTrain().setEnDeplacement(true);
 		p_case = new Point(0, 0);
 		jeu.getTrain().setSens(jeu.getPlateau().getCase(p_case).sens(jeu.getTrain()));
 		jeu.getFeu().MiseAuVert();
-		
-		//Ajout du son
-		f = new File("./" + "son/son.wav");
-		audioIn = null;
-		try {
-			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
-		} catch (UnsupportedAudioFileException | IOException e2) {
-			e2.printStackTrace();
-		}  
-		try {
-			clip = AudioSystem.getClip();
-		} catch (LineUnavailableException e1) {
-			e1.printStackTrace();
-		}
-	    try {
-			clip.open(audioIn);
-		} catch (LineUnavailableException | IOException e1) {
-			e1.printStackTrace();
-		}
-	    clip.start();
-			    
+
 		// Lancement du timer
 		task = new TimerTask() {
 			public void run() {
@@ -251,12 +234,33 @@ public class jeu extends JDialog {
 			}
 		};
 		monTimer.schedule(task, new Date(), 10);
-		
+
+		// Ajout du son
+		f = new File("./" + "son/AvanceGen.wav");
+		audioIn = null;
+		try {
+			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+		} catch (UnsupportedAudioFileException | IOException e2) {
+			e2.printStackTrace();
+		}
+		try {
+			clip = AudioSystem.getClip();
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			clip.open(audioIn);
+		} catch (LineUnavailableException | IOException e1) {
+			e1.printStackTrace();
+		}
+		clip.loop(Clip.LOOP_CONTINUOUSLY);
+
 	}
 
 	/**
 	 * Méthode permettant d'activer toutes les tâches lors d'un clic de souris
-	 * @param evt : évenement lié à un clic 
+	 * 
+	 * @param evt : évenement lié à un clic
 	 */
 	private void formMouseClicked(MouseEvent evt) {
 
@@ -267,22 +271,19 @@ public class jeu extends JDialog {
 				if (temp.getX() == -1) {
 					temp = jeu.dansQuelleCase(p);
 					jeu.getPlateau().getCase(temp).setCase_Selectionnee(true);
-				} 
-				else {
+				} else {
 					Point p_aEchanger = jeu.dansQuelleCase(p);
 					Boolean echange_ok = jeu.getPlateau().echangerCase(jeu.getPlateau().getCase(temp),
 							jeu.getPlateau().getCase(p_aEchanger));
 					if (echange_ok) {
 						jeu.getPlateau().getCase(p_aEchanger).setCase_Selectionnee(false);
-					} 
-					else {
+					} else {
 						jeu.getPlateau().getCase(temp).setCase_Selectionnee(false);
 					}
 					temp = new Point(-1, -1);
 				}
 				repaint();
-			} 
-		else {
+			} else {
 				Point a = jeu.getFeu().getPoint();
 				if ((p.getX() <= a.getX() + 41 && p.getX() >= a.getX())
 						&& (p.getY() >= a.getY() && p.getY() <= a.getY() + 100))
@@ -295,12 +296,10 @@ public class jeu extends JDialog {
 							&& (p.getY() >= r.getY() && p.getY() <= r.getY() + 86)) {
 						FenetreRecompense Recom = new FenetreRecompense();
 						Recom.setVisible(true);
-					} 
-					else {
+					} else {
 						if ((p.getX() <= 350 && p.getX() >= 250) && (p.getY() >= 35 && p.getY() <= 135)) {
 							setVisible(false);
-						} 
-						else {
+						} else {
 							if ((p.getX() <= 650 && p.getX() >= 550) && (p.getY() >= 35 && p.getY() <= 135)) {
 								jeu.initPlateau();
 								repaint();
@@ -320,7 +319,7 @@ public class jeu extends JDialog {
 
 		JFrame frame = new JFrame("Pop up");
 		String mess;
-		
+
 		t_fantome.setPoint(jeu.getTrain().getPoint());
 		t_fantome.deplacer(jeu.getPlateau().getCase(p_case), jeu.getTrain().getSens());
 
@@ -344,28 +343,33 @@ public class jeu extends JDialog {
 				JOptionPane.showMessageDialog(frame, "Gagné");
 				initJeu(true);
 			} else {
-				if (jeu.getTrain().getPoint().equals(new Point((int)jeu.getPlateau().getCase(p_case).getPoint().getX()+ 100 ,(int)jeu.getPlateau().getCase(p_case).getPoint().getY() + 100 )) && (jeu.getPlateau().getCase(p_case) instanceof Croisement)) {
-					
-					JOptionPane d = new JOptionPane();
-					ImageIcon lesTextes[] = { new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png"), new ImageIcon("ImageTchouTchou/FlecheDroite.png")};
-					int choix = d.showOptionDialog(this, "Veuillez choisir votre trajectoire !!", "Choix de la trajectoire",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,null, lesTextes,lesTextes[0]);
+				if (jeu.getTrain().getPoint()
+						.equals(new Point((int) jeu.getPlateau().getCase(p_case).getPoint().getX() + 100,
+								(int) jeu.getPlateau().getCase(p_case).getPoint().getY() + 100))
+						&& (jeu.getPlateau().getCase(p_case) instanceof Croisement)) {
 
-			        if (choix == 0) {
-			            jeu.getTrain().setSens(2);
-			            Croisement.direction = 1;
-			        }
-			        else if (choix == 1) {
-			        	jeu.getTrain().setSens(1);
-			        	Croisement.direction = 2;
-			        }
-			        else if (choix == 2) {
-			        	jeu.getTrain().setSens(2);
-			        	Croisement.direction = 2;
-			        }
-			        else {
-			        	jeu.getTrain().setSens(1);
-			        	Croisement.direction = 1;
-			        }
+					JOptionPane d = new JOptionPane();
+					ImageIcon lesTextes[] = { new ImageIcon("ImageTchouTchou/FG.png"),
+							new ImageIcon("ImageTchouTchou/FB.png"), new ImageIcon("ImageTchouTchou/FH.png"),
+							new ImageIcon("ImageTchouTchou/FD.png") };
+					int choix = d.showOptionDialog(this, "Veuillez choisir votre trajectoire !!",
+							"Choix de la trajectoire", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+							null, lesTextes, lesTextes[0]);
+
+					if (choix == 0) {
+						jeu.getTrain().setSens(2);
+						Croisement.direction = 1;
+					} else if (choix == 1) {
+						jeu.getTrain().setSens(1);
+						Croisement.direction = 2;
+					} else if (choix == 2) {
+						jeu.getTrain().setSens(2);
+						Croisement.direction = 2;
+					} else if (choix == 3) {
+						jeu.getTrain().setSens(1);
+						Croisement.direction = 1;
+					}
+
 				}
 				jeu.deplacerTrain(jeu.getPlateau().getCase(p_case));
 				t_fantome.deplacer(jeu.getPlateau().getCase(p_case), jeu.getTrain().getSens());
@@ -396,7 +400,9 @@ public class jeu extends JDialog {
 
 	/**
 	 * Méthode permettant de réinitialiser le jeu
-	 * @param win : booléen permettant de savoir si le joueur a gagné ou s'il s'agit d'une autre tentative
+	 * 
+	 * @param win : booléen permettant de savoir si le joueur a gagné ou s'il s'agit
+	 *            d'une autre tentative
 	 */
 	public void initJeu(Boolean win) {
 		if (win) {

@@ -18,37 +18,39 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * Class <code>mainwindow</code>La classe mainwindow permet d'afficher notre page d'accueils
- * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * Class <code>mainwindow</code>La classe mainwindow permet d'afficher notre
+ * page d'accueils
+ * 
+ * @author Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/01/2022
  */
-public class mainwindow extends JFrame implements ActionListener{
+public class mainwindow extends JFrame implements ActionListener {
 
 	/**
 	 * Image de fond
 	 */
 	private ImageIcon monImageFond = new ImageIcon("ImageTchouTchou/Gare.jpg");
-	
+
 	/**
 	 * Panel lié au mainwindow
 	 */
 	private MonPanel contentPane;
-	
+
 	/**
 	 * Niveau du jeu (2x2 ou 3x3)
 	 */
 	static int niveau = 2;
-	
+
 	/**
 	 * Nombre de partie joué
 	 */
 	static int NbPartie = 1;
-	
+
 	/**
-	 * Aide au joueur 
+	 * Aide au joueur
 	 */
 	static boolean aide = false;
-	
+
 	/**
 	 * Checkbow lié à l'aide
 	 */
@@ -77,23 +79,13 @@ public class mainwindow extends JFrame implements ActionListener{
 	public mainwindow() {
 
 		setTitle("TchouTchou");
+		setIconImage(new ImageIcon("ImageTchouTchou/ID.png").getImage());
 
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((screenSize.width - 800) / 2, (screenSize.height - 600) / 2, 800, 600);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-
-		// Ici on place le bouton central Play
-		JButton btnPlay = new JButton("Play");
-		btnPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				jeu Jeu = new jeu();
-				Jeu.setVisible(true);
-			}
-		});
-		btnPlay.setFont(new Font("MV Boli", Font.BOLD, 26));
-		btnPlay.setBounds(260, 220, 291, 81);
 
 		// Ici on place le check box
 		checkbox = new JCheckBox("Check");
@@ -106,7 +98,6 @@ public class mainwindow extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 
 		// Ajout des boutons
-		contentPane.add(btnPlay);
 		contentPane.add(checkbox);
 
 		// On regarde le click
@@ -121,15 +112,19 @@ public class mainwindow extends JFrame implements ActionListener{
 
 	/**
 	 * Affichage du fond de la page d'accueil
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void dessiner(Graphics g) {
 		g.drawImage(monImageFond.getImage(), 0, 0, 800, 600, null);
 		selectniv((Graphics2D) g);
+		g.drawImage(new ImageIcon("ImageTchouTchou/LogoPlay.png").getImage(), 260, 220, 291, 81, null);
+
 	}
 
 	/**
 	 * Méthode permettant d'afficher graphiquement le niveau voulu
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void selectniv(Graphics2D g) {
@@ -138,18 +133,18 @@ public class mainwindow extends JFrame implements ActionListener{
 		Color c3x3 = new Color(0, 0, 0);
 
 		if (niveau == 2) {
-			c2x2 = new Color(225, 106, 12);
+			c2x2 = new Color(160, 82, 45);
 		} else {
-			c3x3 = new Color(225, 106, 12);
+			c3x3 = new Color(160, 82, 45);
 		}
 
 		// Cas 2x2
 		g.setColor(c2x2);
 		g.setStroke(new BasicStroke(10));
-		g.drawRect(200, 375, 150, 150);
+		g.drawRoundRect(200, 375, 150, 150, 10, 10);
 
 		g.setColor(new Color(21, 68, 155));
-		g.fillRect(200, 375, 150, 150);
+		g.fillRoundRect(200, 375, 150, 150, 10, 10);
 
 		g.setColor(new Color(0, 0, 0));
 		g.setStroke(new BasicStroke(3));
@@ -159,10 +154,10 @@ public class mainwindow extends JFrame implements ActionListener{
 		// Cas 3x3
 		g.setColor(c3x3);
 		g.setStroke(new BasicStroke(10));
-		g.drawRect(450, 375, 150, 150);
+		g.drawRoundRect(450, 375, 150, 150, 10, 10);
 
 		g.setColor(new Color(21, 68, 155));
-		g.fillRect(450, 375, 150, 150);
+		g.fillRoundRect(450, 375, 150, 150, 10, 10);
 
 		g.setColor(new Color(0, 0, 0));
 		g.setStroke(new BasicStroke(3));
@@ -193,6 +188,10 @@ public class mainwindow extends JFrame implements ActionListener{
 			regle regles = new regle();
 			regles.setVisible(true);
 		}
+		if ((sourisX >= 260 && sourisX <= 260 + 291) && (sourisY >= 220 && sourisY <= 220 + 81)) {
+			jeu Jeu = new jeu();
+			Jeu.setVisible(true);
+		}
 
 		repaint();
 	}
@@ -203,7 +202,7 @@ public class mainwindow extends JFrame implements ActionListener{
 			aide = true;
 		else
 			aide = false;
-		
+
 	}
 
 }

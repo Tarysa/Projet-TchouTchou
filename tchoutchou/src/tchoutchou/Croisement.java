@@ -84,7 +84,7 @@ public class Croisement extends Case {
 		    		pt.setLocation((int)p.getX() , (int)p.getY() + 1) ;// On avance dans le sens horaire suivant l'axe verticale
 		    }
 		    else
-		    	if (direction == 2)
+		    	if (direction == 1)
 		    		pt.setLocation((int)p.getX() - 1, (int)p.getY()) ;// On avance dans le sens anti-horaire suivant l'axe horizontale
 		    	else
 		    		pt.setLocation((int)p.getX() , (int)p.getY() - 1) ;// On avance dans le sens anti-horaire suivant l'axe verticale
