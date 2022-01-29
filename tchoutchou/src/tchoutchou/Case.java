@@ -137,29 +137,15 @@ public abstract class Case extends ObjetGraphiqueMobile{
             
             g.setColor(new Color(9,82,40)) ;
             
-            if (random.nextInt(2) == 0) {
-                g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 140, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 140, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 140, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 140, 40, 40, 20, 20);
-            }
-            else if (random.nextInt(2) == 1){
-            	g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 20, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 20, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 20, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 20, 40, 40, 20, 20);
-            }
-            else {
-                g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 140, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 140, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 140, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 140, 40, 40, 20, 20);
+            g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 140, 40, 40, 20, 20);
+            g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        	g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 140, 40, 40, 20, 20);
+        	g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 140, 40, 40, 20, 20);
         		
-        		g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 20, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 20, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 20, 40, 40, 20, 20);
-        		g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 20, 40, 40, 20, 20);
-            }
+        	g.fillRoundRect((int)m_p.getX()+ 20, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        	g.fillRoundRect((int)m_p.getX()+ 60, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        	g.fillRoundRect((int)m_p.getX()+ 100, (int)m_p.getY() + 20, 40, 40, 20, 20);
+        	g.fillRoundRect((int)m_p.getX()+ 140, (int)m_p.getY() + 20, 40, 40, 20, 20);
             
     	}
     	else if (this instanceof TraverseeVerticale) {
