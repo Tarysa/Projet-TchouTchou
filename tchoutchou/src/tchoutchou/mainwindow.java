@@ -1,17 +1,10 @@
 package tchoutchou;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.border.EmptyBorder;
-
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.Graphics;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -25,11 +18,6 @@ import java.awt.event.ActionEvent;
  * @version 1.0 06/01/2022
  */
 public class mainwindow extends JFrame implements ActionListener {
-
-	/**
-	 * Image de fond
-	 */
-	private ImageIcon monImageFond = new ImageIcon("ImageTchouTchou/Gare.jpg");
 
 	/**
 	 * Panel li� au mainwindow
@@ -116,9 +104,9 @@ public class mainwindow extends JFrame implements ActionListener {
 	 * @param g : fen�tre graphique
 	 */
 	public void dessiner(Graphics g) {
-		g.drawImage(monImageFond.getImage(), 0, 0, 800, 600, null);
+		g.drawImage(new ImageIcon("ImageTchouTchou/Gare.jpg").getImage(), 0, 0, 800, 600, null);
 		selectniv((Graphics2D) g);
-		g.drawImage(new ImageIcon("ImageTchouTchou/LogoPlay.png").getImage(), 260, 220, 291, 81, null);
+		g.drawImage(new ImageIcon("ImageTchouTchou/Play.png").getImage(), 250, 215, 310, 148, null);
 
 	}
 
@@ -176,7 +164,6 @@ public class mainwindow extends JFrame implements ActionListener {
 		// On récupere les coordonnées du pointeur de la souris dans la fenêtre
 		int sourisX = evt.getPoint().x;
 		int sourisY = evt.getPoint().y;
-		// On fait le changement de repère pour se ramener au ContentPane
 
 		if ((sourisX >= 200 && sourisX <= 350) && (sourisY >= 375 && sourisY <= 525)) {
 			niveau = 2;
@@ -188,7 +175,7 @@ public class mainwindow extends JFrame implements ActionListener {
 			regle regles = new regle();
 			regles.setVisible(true);
 		}
-		if ((sourisX >= 260 && sourisX <= 260 + 291) && (sourisY >= 220 && sourisY <= 220 + 81)) {
+		if ((sourisX >= 250 && sourisX <= 250 + 310) && (sourisY >= 215 && sourisY <= 215 + 148)) {
 			jeu Jeu = new jeu();
 			Jeu.setVisible(true);
 		}

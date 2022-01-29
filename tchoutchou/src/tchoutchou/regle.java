@@ -1,21 +1,19 @@
 package tchoutchou;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
- * Class <code>regle</code>La classe regle permettant d'afficher les règles au joueur
- * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * Class <code>regle</code>La classe regle permettant d'afficher les règles au
+ * joueur
+ * 
+ * @author Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/01/2022
  */
 public class regle extends JDialog {
@@ -24,7 +22,7 @@ public class regle extends JDialog {
 	 * Panel lié aux règles
 	 */
 	private MonPanelRegle contentPanel;
-	
+
 	/**
 	 * Attribut lié à la page des règles affichées
 	 */
@@ -72,6 +70,7 @@ public class regle extends JDialog {
 
 	/**
 	 * Gestionnaire d'évenement lors du clic
+	 * 
 	 * @param evt : evenement
 	 */
 	private void formMouseClicked(MouseEvent evt) {
@@ -111,6 +110,7 @@ public class regle extends JDialog {
 
 	/**
 	 * Affichage des règles
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void dessiner(Graphics g) {
@@ -129,7 +129,7 @@ public class regle extends JDialog {
 			g.drawImage(new ImageIcon("ImageTchouTchou/Page4.png").getImage(), 0, 0, 800, 544, null);
 			break;
 		case 5:
-			g.drawImage(new ImageIcon("ImageTchouTchou/Page5.png").getImage(), 0, 0, 800, 544, null);
+			g.drawImage(new ImageIcon("ImageTchouTchou/Page5bis.png").getImage(), 0, 0, 800, 544, null);
 			break;
 		case 6:
 			g.drawImage(new ImageIcon("ImageTchouTchou/Page6.png").getImage(), 0, 0, 800, 544, null);

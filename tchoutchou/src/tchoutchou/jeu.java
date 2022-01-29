@@ -110,6 +110,7 @@ public class jeu extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				formMouseClicked(e);
+				repaint();
 			}
 		});
 
@@ -196,6 +197,7 @@ public class jeu extends JDialog {
 	 */
 	public void cliquerFeu() {
 
+		repaint();
 		File f = new File("./" + "son/DebutGen.wav");
 		AudioInputStream audioIn = null;
 		try {
@@ -253,7 +255,7 @@ public class jeu extends JDialog {
 		} catch (LineUnavailableException | IOException e1) {
 			e1.printStackTrace();
 		}
-		clip.loop(Clip.LOOP_CONTINUOUSLY);
+		clip.start();
 
 	}
 
@@ -325,15 +327,16 @@ public class jeu extends JDialog {
 
 		if (jeu.getTrain().getSens() == 0) {
 			// Le train sort du plateau
-			monTimer.cancel();
 			clip.stop();
+			monTimer.cancel();
 			monTimer = new Timer();
 			initJeu(false);
 			if ((jeu.getFaute() % 3 == 0) && (jeu.getFaute() <= 3 * jeu.getPlateau().getTaille()) && mainwindow.aide) {
 				jeu.aide(jeu.getFaute() / 3);
 				mess = "Une aide vous a été fournie";
-			} else
+			} else {
 				mess = "Perdu : sens";
+			}
 			JOptionPane.showMessageDialog(frame, mess);
 		} else {
 			if (jeu.estalaSortie(t_fantome)) {
@@ -417,6 +420,8 @@ public class jeu extends JDialog {
 		jeu.getTrain().setPoint(new Point((int) jeu.getPlateau().getCase(new Point(0, 0)).getPoint().getX(),
 				(int) jeu.getPlateau().getCase(new Point(0, 0)).getPoint().getY() + 100));
 		jeu.getFeu().MiseAuRouge();
+
+		clip.stop();
 	}
 
 }

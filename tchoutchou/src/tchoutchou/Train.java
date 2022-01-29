@@ -56,7 +56,18 @@ public class Train extends ObjetGraphiqueMobile{
 	@Override
 	public void afficher(Graphics2D g)
 	{
-		g.drawImage(new ImageIcon("ImageTchouTchou/TrainBleuRougeST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
+		switch (Recompense.numTrain) {
+		     case 1 :  g.drawImage(new ImageIcon("ImageTchouTchou/TrainRougeVertST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
+		break;
+		     case 2 :  g.drawImage(new ImageIcon("ImageTchouTchou/TrainBleuRougeST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
+		break;
+		     case 3 :  g.drawImage(new ImageIcon("ImageTchouTchou/TrainOrangeMarronST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
+		break;
+		     case 4 :  g.drawImage(new ImageIcon("ImageTchouTchou/TrainOrangeVertST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
+		break;
+		     case 5 :  g.drawImage(new ImageIcon("ImageTchouTchou/TrainKidST.png").getImage(), (int)m_p.getX()-21, (int)m_p.getY()-28, 50, 50, null);
+		break;
+		}
 	}
 	
 	/**

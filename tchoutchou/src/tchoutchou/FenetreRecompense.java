@@ -13,10 +13,11 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
 /**
- * Class <code>FenetreRecompense</code>La classe FenetreRecompense permet d'afficher la collection
- * @author  Limousin Lucas, Lafon Gabin, Sendra Thomas
+ * Class <code>FenetreRecompense</code>La classe FenetreRecompense permet
+ * d'afficher la collection
+ * 
+ * @author Limousin Lucas, Lafon Gabin, Sendra Thomas
  * @version 1.0 06/01/2022
  */
 public class FenetreRecompense extends JDialog {
@@ -72,6 +73,7 @@ public class FenetreRecompense extends JDialog {
 
 	/**
 	 * Méthode pour afficher la collection
+	 * 
 	 * @param g : fenêtre graphique
 	 */
 	public void dessiner(Graphics g) {

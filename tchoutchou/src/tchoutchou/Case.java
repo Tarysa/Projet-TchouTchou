@@ -2,7 +2,6 @@ package tchoutchou;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.Random;
 import java.awt.Color;
 import java.awt.BasicStroke;
 
@@ -132,8 +131,7 @@ public abstract class Case extends ObjetGraphiqueMobile{
     		
     		g.drawRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
             g.fillRect((int)m_p.getX(), (int)m_p.getY() + 80, 200, 40) ;
-            
-            Random random = new Random();
+           
             
             g.setColor(new Color(9,82,40)) ;
             

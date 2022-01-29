@@ -24,14 +24,6 @@ public class TchouTchou {
     /// \brief 
     ///
     /**
-     * m_nbAide : entier qui correspond au nombre d'aides déjà dévoilé
-     */
-    private int m_nbAide;
-
-    ///
-    /// \brief 
-    ///
-    /**
      * m_fautes : entier qui correspond au nombre de fois où le train n'est pas arrivé à la sortie
      */
     private int m_fautes;
@@ -83,7 +75,6 @@ public class TchouTchou {
 	public TchouTchou(int taille)
 	{
 	    m_taille = taille ;
-	    m_nbAide = 0 ;
 	    m_fautes = 0;
 	    m_num_soluce = 0;
 	    m_plateau = new Plateau(m_taille) ;
@@ -164,7 +155,7 @@ public class TchouTchou {
 	            m_plateauSoluce.setCase(new Point(0,2), m_plateau.InitCase(new Vide(new Point()),new Point(0,2))) ;
 	            m_plateauSoluce.setCase(new Point(1,0), m_plateau.InitCase(new RailCourbeHD(new Point()),new Point(1,0))) ;
 	            m_plateauSoluce.setCase(new Point(1,1), m_plateau.InitCase(new RailCourbeGB(new Point()),new Point(1,1))) ;
-	            m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase(new TraverseeVerticale(new Point()),new Point(1,2))) ;
+	            m_plateauSoluce.setCase(new Point(1,2), m_plateau.InitCase(new RailCourbeHD(new Point()),new Point(1,2))) ;
 	            m_plateauSoluce.setCase(new Point(2,0), m_plateau.InitCase(new RailCourbeGH(new Point()),new Point(2,0))) ;
 	            m_plateauSoluce.setCase(new Point(2,1), m_plateau.InitCase(new TraverseeVerticale(new Point()),new Point(2,1))) ;
 	            m_plateauSoluce.setCase(new Point(2,2), m_plateau.InitCase(new Croisement(new Point()),new Point(2,2))) ;
@@ -207,7 +198,6 @@ public class TchouTchou {
 	        getPlateau().melangePlateau();
 	    }
 
-	    m_nbAide = 0;
 	    m_fautes = 0;
 	}
 
@@ -292,7 +282,6 @@ public class TchouTchou {
 
 	    Point p_sol = new Point();
 	    Point p_erreur = new Point();
-	    //Case vide = new Vide(new Point(0,0)) ;
 	    boolean correct = false;
 	    List<Point> liste = new ArrayList<Point>();
 	    Point p_vide = new Point(m_plateau.rechercheCaseType(7)); //7 correspond au type d'une case Vide
